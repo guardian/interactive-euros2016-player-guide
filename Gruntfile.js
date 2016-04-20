@@ -99,7 +99,7 @@ module.exports = function(grunt) {
                 files: [
                     { // BOOT and EMBED
                         expand: true, cwd: 'build/',
-                        src: ['boot.js', 'embed.html'],
+                        src: ['boot.js', 'embed.html','index.html','curl.js'],
                         dest: 'deploy/<%= visuals.timestamp %>'
                     },
                     { // ASSETS
@@ -173,7 +173,7 @@ module.exports = function(grunt) {
                     { // BOOT
                         expand: true,
                         cwd: 'deploy/<%= visuals.timestamp %>',
-                        src: ['boot.js'],
+                        src: ['boot.js','index.html','curl.js'],
                         dest: '<%= visuals.s3.path %>',
                         params: { CacheControl: 'max-age=60' }
                     },
@@ -230,7 +230,7 @@ module.exports = function(grunt) {
     grunt.registerTask('all', ['interactive', 'embed', 'copy:assets'])
     grunt.registerTask('default', ['clean', 'copy:harness', 'all', 'connect', 'watch']);
     grunt.registerTask('build', ['clean', 'all']);
-    grunt.registerTask('deploy', ['loadDeployConfig', 'prompt:visuals', 'build', 'copy:deploy', 'aws_s3', 'boot_url']);
+    grunt.registerTask('deploy', ['loadDeployConfig', 'prompt:visuals', 'build', 'copy:harness','copy:deploy', 'aws_s3', 'boot_url']);
 
     grunt.loadNpmTasks('grunt-aws');
 

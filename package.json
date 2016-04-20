@@ -15,7 +15,8 @@
     "grunt-sass": "^1.1.0",
     "grunt-shell": "^1.1.2",
     "grunt-template": "^0.2.3",
-    "jit-grunt": "^0.9.1"
+    "jit-grunt": "^0.9.1",
+    "qwery": "^4.0.0"
   },
   "scripts": {
     "start": "./node_modules/.bin/grunt",
@@ -27,8 +28,12 @@
   "jspm": {
     "configFile": "src/js/config.js",
     "dependencies": {
+      "bonzo": "npm:bonzo@^2.0.0",
       "guardian/iframe-messenger": "github:guardian/iframe-messenger@master",
+      "handlebars": "github:components/handlebars.js@^4.0.5",
       "json": "github:systemjs/plugin-json@^0.1.0",
+      "qwery": "npm:qwery@^4.0.0",
+      "ractive": "github:ractivejs/ractive@^0.7.3",
       "reqwest": "github:ded/reqwest@^1.1.5",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },

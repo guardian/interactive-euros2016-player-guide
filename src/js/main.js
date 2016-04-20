@@ -1,21 +1,162 @@
 import reqwest from 'reqwest'
-import mainHTML from './text/main.html!text'
-import share from './lib/share'
+import qwery from 'qwery'
+import bonzo from 'bonzo'
+import Handlebars from 'handlebars'
 
-var shareFn = share('Interactive title', 'http://gu.com/p/URL', '#Interactive');
+import mainHTML from './text/main.html!text'
+import teamHTML from './text/teamPage.html!text'
+import playerDetailHTML from './text/playerDetailPage.html!text'
+
+var data = {};
+var teams;
+var currentTeam = "England";
+var windowWidth = window.innerWidth;
+var isMobile = windowWidth < 980 ? true : false;
+var onStart = true;
+
+function $(selector){
+    return bonzo(qwery(selector));
+}
 
 export function init(el, context, config, mediator) {
-    el.innerHTML = mainHTML.replace(/%assetPath%/g, config.assetPath);
-
     reqwest({
-        url: 'http://ip.jsontest.com/',
+        url: 'https://interactive.guim.co.uk/docsdata-test/10WUlJVnZ23A1JmMESn7sOGm0s3WwKHynz-ptV_8b8uQ.json',
         type: 'json',
         crossOrigin: true,
-        success: (resp) => el.querySelector('.test-msg').innerHTML = `Your IP address is ${resp.ip}`
+        success: (resp) => {
+            data.teams = [];
+            data.isMobile = isMobile;
+
+            resp.sheets.Teams.forEach(function(team){
+                var players = resp.sheets[team.Team];
+
+                if(players){
+                    players = players.map(function(player,index){
+                        player.x = Math.round(Math.random()*10);
+                        player.y = Math.round(Math.random()*10);
+                        player.image = player.name.replace(/\s/g,'_') + ".jpg";
+                        player.team = team.Team;
+                        
+                        if(team.Team === currentTeam && index === 0){
+                            player.isActive = true;
+                        }
+
+                        return player
+                    })
+                }else{
+                    players = [];
+                }
+
+                data.teams.push({
+                    "teamName": team.Team,
+                    "teamInfo": team,
+                    "players":players,
+                    "isActive": team.Team === currentTeam ? true : false
+                })
+            });
+
+            createPage(el,config);
+        }
+    });
+}
+
+function createPage(el,config){
+    Handlebars.registerPartial('teamPage',teamHTML);
+    Handlebars.registerPartial('playerDetailPage',playerDetailHTML);
+
+    var mainTemplate = Handlebars.compile(mainHTML);
+    var mainTemplateParsed = mainTemplate(data).replace(/%assetPath%/g,config.assetPath);
+    var teamTemplate = Handlebars.compile(teamHTML);
+    var playerDetailTemplate = Handlebars.compile(playerDetailHTML);
+
+    el.innerHTML = mainTemplateParsed;
+
+    console.log(data);
+
+    $('.menu-button').each(function(menuButton){
+        menuButton.addEventListener('click',function(e){
+            currentTeam = menuButton.innerHTML;
+            $('.menu-button').removeClass('active-team');
+            $(menuButton).addClass('active-team');
+
+            if(isMobile){
+                $('#detail-overlay-container').removeClass('opened');
+                
+                var teamData = data.teams.filter((team) => team.teamInfo.Team === currentTeam)[0];
+                var teamTemplateRendered = teamTemplate(teamData).replace(/%assetPath%/g,config.assetPath);
+                var detailContainerHTML = '';
+
+                $('#teams-container')[0].innerHTML = teamTemplateRendered;
+                
+                teamData.players.forEach(function(player){
+                    var playerDetailTemplateRendered = playerDetailTemplate(player).replace(/%assetPath%/g,config.assetPath);
+                    detailContainerHTML += playerDetailTemplateRendered;
+                })
+
+                $('#detail-overlay-container .detail-container')[0].innerHTML = detailContainerHTML;
+                
+                $('.player-container').each(function(playerEl){
+                    var playerName = playerEl.querySelector('.player-name').innerHTML;
+                    var teamName = playerEl.getAttribute('data-team');
+                    playerEl.addEventListener('click',function(e){
+                       openDetailContainer(playerName,teamName) 
+                    })
+                });
+            }else{
+                var teamEl = $('.team-container[data-teamname="'+ currentTeam +'"]');
+                var teamOffset = teamEl.offset().top - 36;
+                $('body').scrollTop(teamOffset)
+            }
+            
+            
+        })
     });
 
-    [].slice.apply(el.querySelectorAll('.interactive-share')).forEach(shareEl => {
-        var network = shareEl.getAttribute('data-network');
-        shareEl.addEventListener('click',() => shareFn(network));
+    $('.player-container').each(function(playerEl){
+        var playerName = playerEl.querySelector('.player-name').innerHTML;
+        var teamName = playerEl.getAttribute('data-team');
+
+        if(isMobile){
+            playerEl.addEventListener('click',function(e){
+               openDetailContainer(playerName,teamName) 
+            })
+        }else{
+            playerEl.addEventListener('mouseenter',function(e){
+                var teamData = data.teams.filter((team) => team.teamInfo.Team === teamName)[0];
+                var playerData = teamData.players.filter((player)=>player.name === playerName)[0];
+                var playerDetailTemplateRendered = playerDetailTemplate(playerData).replace(/%assetPath%/g,config.assetPath);
+                var playerOffset = $(playerEl).offset().top;
+
+                $('#detail-box-container')[0].innerHTML = playerDetailTemplateRendered;
+                $('#detail-box-container').css('top',playerOffset + 'px');
+                $('.player-container').removeClass('activePlayer')
+                $(playerEl).addClass('activePlayer')
+            })  
+
+        }
     });
+
+    function openDetailContainer(playerName,teamName){
+        var playerDetailEl = $('.detail-player-container[data-playername="' + playerName + '"]');
+        var playerDetailOffset = playerDetailEl.offset().top;
+        var parentContainerOffset = $('#detail-overlay-container').offset().top;
+        var parentContainerScroll  = $('#detail-overlay-container').scrollTop();
+        var oldOffset = parentContainerScroll;
+        var newOffset = playerDetailOffset - parentContainerOffset + parentContainerScroll - 16;
+
+        $('#detail-overlay-container').addClass('opened');
+        $('#detail-overlay-container').scrollTop(newOffset);
+    }
+
+    if(isMobile){
+        $('#detail-overlay-container')[0].addEventListener('click',function(e){
+            $('#detail-overlay-container').removeClass('opened')
+        })
+    }
+
+    
+    if(!isMobile){
+        var activePlayerOffset = $('.activePlayer').offset().top;
+        $('#detail-box-container').css('top',activePlayerOffset + 'px');
+    }
 }

@@ -1,18 +1,56 @@
 <div class="interactive-container">
-    <h2 class="interactive-es6-headline">Interactive bootstrap</h2>
+	<header id="interactive-header">
+	    <h1>The Guardian guide to the Euros 2016</h1>
+	    <h2>Find tactics, players, strengths and weaknesses of the teams in Euros 2016</h2>
 
-    <div class="test-msg">Loading…</div>
+	    <div id="teams-menu">
+	    	<div id="teams-strip">
+	    		<p>Select a team</p>
+		        {{#each teams}}
+		            <button class="menu-button {{#if isActive}}active-team{{/if}}">{{teamName}}</button>
+		        {{/each}}
+		    </div>
+	    </div>
+	</header>
 
-    <ul class="fonts">
-        <li class="fonts__egyptian">Egyptian</li>
-        <li class="fonts__text-egyptian">Text Egyptian</li>
-        <li class="fonts__sans">Sans</li>
-        <li class="fonts__text-sans">Text Sans</li>
-    </ul>
-    <p>
-        <button class="interactive-share" data-network="facebook"></button>
-        <button class="interactive-share" data-network="twitter"></button>
-        <button class="interactive-share" data-network="email"></button>
-    </p>
-    <img src="%assetPath%/assets/imgs/test.png" />
+    <div id="teams-container">
+		{{#each teams}}
+			{{#if ../isMobile}}
+				{{#if isActive}}
+					{{>teamPage full=true}}
+				{{/if}}
+			{{else}}
+				{{>teamPage}}
+			{{/if}}
+    	{{/each}}
+    </div>
+
+    {{#if isMobile}}
+	    <div id="detail-overlay-wrapper">
+		    <div id="detail-overlay-container" class="">
+			    <div class="detail-container">
+			    	{{#each teams}}
+			    		{{#if isActive}}
+							{{#each players}}
+								{{>playerDetailPage}}
+							{{/each}}
+						{{/if}}
+			    	{{/each}}
+			    </div>
+		    </div>
+		    <div class="close-overlay-btn"></div>
+		</div>
+	    
+    {{else}}
+    	<div id="detail-box-container" class="">
+    	{{#each teams}}
+    		{{#each players}}
+    			{{#if isActive}}
+		    		{{>playerDetailPage}}
+	    		{{/if}}
+    		{{/each}}
+    	{{/each}}
+    	</div>
+
+    {{/if}}
 </div>

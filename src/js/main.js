@@ -32,10 +32,12 @@ export function init(el, context, config, mediator) {
 
                 if(players){
                     players = players.map(function(player,index){
-                        player.x = Math.round(Math.random()*10);
-                        player.y = Math.round(Math.random()*10);
-                        player.image = player.name.replace(/\s/g,'_') + ".jpg";
+                        player.x = Math.round(Math.random()*20);
+                        player.y = Math.round(Math.random()*20);
+                        player.image = player.name.replace(/\s/g,'_').replace(/\'/g,'') + ".jpg";
                         player.team = team.Team;
+                        player.specialty = player["special player? (eg. key player, promising talent, etc)"];
+                        player.isSpecial = player.specialty ? true : false;
                         
                         if(team.Team === currentTeam && index === 0){
                             player.isActive = true;
@@ -50,7 +52,12 @@ export function init(el, context, config, mediator) {
                 data.teams.push({
                     "teamName": team.Team,
                     "teamInfo": team,
-                    "players":players,
+                    "players":{
+                        "Forwards": players.filter((player)=> player.position === "Forward" || player.position === "Forward (winger)"),
+                        "Midfielders": players.filter((player)=> player.position === "Midfielder"),
+                        "Defenders": players.filter((player)=> player.position === "Defender"),
+                        "Goalkeepers": players.filter((player)=> player.position === "Goalkeeper")
+                    },
                     "isActive": team.Team === currentTeam ? true : false
                 })
             });
@@ -81,6 +88,7 @@ function createPage(el,config){
 
             if(isMobile){
                 $('#detail-overlay-container').removeClass('opened');
+                $('#detail-overlay-container').attr('data-teamname', currentTeam);
                 
                 var teamData = data.teams.filter((team) => team.teamInfo.Team === currentTeam)[0];
                 var teamTemplateRendered = teamTemplate(teamData).replace(/%assetPath%/g,config.assetPath);
@@ -88,10 +96,12 @@ function createPage(el,config){
 
                 $('#teams-container')[0].innerHTML = teamTemplateRendered;
                 
-                teamData.players.forEach(function(player){
-                    var playerDetailTemplateRendered = playerDetailTemplate(player).replace(/%assetPath%/g,config.assetPath);
-                    detailContainerHTML += playerDetailTemplateRendered;
-                })
+                for(var position in teamData.players){
+                    teamData.players[position].forEach(function(player){
+                        var playerDetailTemplateRendered = playerDetailTemplate(player).replace(/%assetPath%/g,config.assetPath);
+                        detailContainerHTML += playerDetailTemplateRendered; 
+                    })
+                }
 
                 $('#detail-overlay-container .detail-container')[0].innerHTML = detailContainerHTML;
                 
@@ -123,7 +133,16 @@ function createPage(el,config){
         }else{
             playerEl.addEventListener('mouseenter',function(e){
                 var teamData = data.teams.filter((team) => team.teamInfo.Team === teamName)[0];
-                var playerData = teamData.players.filter((player)=>player.name === playerName)[0];
+                var playerData;
+                for(var key in teamData.players){
+                    if(!playerData){
+                        teamData.players[key].forEach(function(player){
+                            if(player.name === playerName){
+                                playerData = player;
+                            } 
+                        });
+                    }
+                };
                 var playerDetailTemplateRendered = playerDetailTemplate(playerData).replace(/%assetPath%/g,config.assetPath);
                 var playerOffset = $(playerEl).offset().top;
 
@@ -131,6 +150,7 @@ function createPage(el,config){
                 $('#detail-box-container').css('top',playerOffset + 'px');
                 $('.player-container').removeClass('activePlayer')
                 $(playerEl).addClass('activePlayer')
+                createLine(playerOffset,playerEl,playerName)
             })  
 
         }
@@ -139,17 +159,51 @@ function createPage(el,config){
     function openDetailContainer(playerName,teamName){
         var playerDetailEl = $('.detail-player-container[data-playername="' + playerName + '"]');
         var playerDetailOffset = playerDetailEl.offset().top;
-        var parentContainerOffset = $('#detail-overlay-container').offset().top;
-        var parentContainerScroll  = $('#detail-overlay-container').scrollTop();
+        var parentContainerOffset = $('#detail-scroll-area').offset().top;
+        var parentContainerScroll  = $('#detail-scroll-area').scrollTop();
         var oldOffset = parentContainerScroll;
         var newOffset = playerDetailOffset - parentContainerOffset + parentContainerScroll - 16;
-
+        
+        $(el).addClass('detail-panel-opened');
         $('#detail-overlay-container').addClass('opened');
-        $('#detail-overlay-container').scrollTop(newOffset);
+        $('#detail-scroll-area').scrollTop(newOffset);
+    }
+
+    function createLine(pOffset,pEl,pName){
+        var playerChildEls = pEl.parentNode.parentNode.querySelectorAll('.player-container');
+        var playerOffset = $(pEl).offset();
+        var lineWidth = 30;
+        var boxOffset = $('#detail-box-container').offset();
+        var interactiveOffset = $('.interactive-container').offset();
+        var diff = boxOffset.left - playerOffset.left - playerOffset.width - lineWidth;
+        var playerIndex;
+
+
+        for(var i=0; i<playerChildEls.length; i++){
+            if(playerChildEls[i].getAttribute('data-player') === pName){
+                playerIndex = i + 1;
+            }
+        }
+        
+        $('#line-container').css('top',playerOffset.top + (playerOffset.width/2))
+        $('#line-container').css('left',playerOffset.left + playerOffset.width - interactiveOffset.left)
+
+        if(playerIndex < playerChildEls.length && playerIndex%3 !== 0){
+            $('#player-line').css('width',lineWidth);
+            $('#line-box').css('width',diff)
+            $('#line-box').css('height',(playerOffset.width/2) + lineWidth + 10)
+        }else{
+            $('#player-line').css('width',diff + lineWidth);
+            $('#line-box').css({
+                'width':0,
+                'height':0
+            })
+        }
     }
 
     if(isMobile){
         $('#detail-overlay-container')[0].addEventListener('click',function(e){
+            $(el).removeClass('detail-panel-opened');
             $('#detail-overlay-container').removeClass('opened')
         })
     }

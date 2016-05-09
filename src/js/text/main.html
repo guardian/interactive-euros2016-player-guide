@@ -1,4 +1,8 @@
 <div class="interactive-container">
+	<div id="line-container">
+		<div id="player-line"></div>
+		<div id="line-box"></div>
+	</div>
 	<header id="interactive-header">
 	    <h1>The Guardian guide to the Euros 2016</h1>
 	    <h2>Find tactics, players, strengths and weaknesses of the teams in Euros 2016</h2>
@@ -26,21 +30,22 @@
     </div>
 
     {{#if isMobile}}
-	    <div id="detail-overlay-wrapper">
-		    <div id="detail-overlay-container" class="">
+	    <div id="detail-overlay-container" class="" data-teamname="England">
+		    <div id="detail-scroll-area">
 			    <div class="detail-container">
 			    	{{#each teams}}
 			    		{{#if isActive}}
 							{{#each players}}
-								{{>playerDetailPage}}
+								{{#each .}}
+									{{>playerDetailPage}}
+								{{/each}}
 							{{/each}}
 						{{/if}}
 			    	{{/each}}
 			    </div>
-		    </div>
-		    <div class="close-overlay-btn"></div>
-		</div>
-	    
+			</div>
+			<div class="close-overlay-btn"></div>
+	    </div>	    
     {{else}}
     	<div id="detail-box-container" class="">
     	{{#each teams}}

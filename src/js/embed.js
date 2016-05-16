@@ -75,7 +75,7 @@ function createCard(el,config){
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',player.country)
 
     if(player.rating_match1 || player.rating_match2 || player.rating_match3){
-
+        
     }else{
         el.querySelector('.player-form').innerHTML = "";
     }

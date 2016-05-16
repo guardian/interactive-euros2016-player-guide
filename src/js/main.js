@@ -201,6 +201,24 @@ function createPage(el,config){
         }
     }
 
+    function createSketches(){
+        var sketchContainer = $('#sketch-container');
+        var projectDimensions = sketchContainer[0].getBoundingClientRect(); 
+        
+
+        for(var i=0;i<200;i++){
+            var block = document.createElement('div');
+            var offset = Math.round(Math.random()*20) * 150;
+            block.className = "sketch-block";   
+
+            block.style.backgroundPosition = "0 -" + offset + "px";
+            block.style.top = Math.random()*projectDimensions.height + "px";
+            block.style.left = Math.random()*(projectDimensions.width - 150) + "px";
+            sketchContainer.append(block)
+
+        }
+    }
+
     if(isMobile){
         $('#detail-overlay-container')[0].addEventListener('click',function(e){
             $(el).removeClass('detail-panel-opened');
@@ -213,4 +231,6 @@ function createPage(el,config){
         var activePlayerOffset = $('.activePlayer').offset().top;
         $('#detail-box-container').css('top',activePlayerOffset + 'px');
     }
+
+    createSketches();
 }

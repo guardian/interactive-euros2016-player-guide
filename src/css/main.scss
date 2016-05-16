@@ -16,6 +16,23 @@ $lightYellow: #FFF8E9;
 	color:#333;
 	overflow:hidden;
 }
+#sketch-container{
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:0;
+	.sketch-block{
+		width:150px;
+		height:150px;
+		position: absolute;
+		background-image:url(assets/imgs/sketch-sprite.png);
+		background-size:100%;
+		background-repeat: no-repeat;
+		opacity:0.1;
+	}
+}
 
 #interactive-header{
 	padding-top:1px;
@@ -160,7 +177,8 @@ $lightYellow: #FFF8E9;
 	}
 
 	.teaminfo-container{
-		max-width:620px
+		max-width:620px;
+		position: relative;
 	}
 
 	.team-meta{

@@ -5,7 +5,9 @@
 	.player-photo-container .player-number{
 		background:#BB3030;
 	}
-	
+	.player-header h2{
+		color: #BB3030;
+	}
 }
 
 *[data-teamname='France']{
@@ -15,6 +17,9 @@
 	.player-photo-container .player-number{
 		background:#303EBB;
 	}
+	.player-header h2{
+		color: #303EBB;
+	}
 }
 
 *[data-teamname='Germany']{
@@ -23,5 +28,8 @@
 	}
 	.player-photo-container .player-number{
 		background:#240000;
+	}
+	.player-header h2{
+		color: #240000;
 	}
 }

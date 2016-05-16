@@ -1,7 +1,6 @@
 import iframeMessenger from 'guardian/iframe-messenger'
 import reqwest from 'reqwest'
 import embedHTML from './text/embed.html!text'
-import playerHTML from './text/playerDetailPage.html!text'
 
 var players = [];
 var player;
@@ -9,7 +8,7 @@ var player;
 window.init = function init(el, config) {
     iframeMessenger.enableAutoResize();
 
-    el.innerHTML = embedHTML;
+    el.innerHTML = embedHTML.replace(/%assetPath%/g,config.assetPath);
 
     reqwest({
         url: 'https://interactive.guim.co.uk/docsdata-test/10WUlJVnZ23A1JmMESn7sOGm0s3WwKHynz-ptV_8b8uQ.json',
@@ -24,6 +23,7 @@ window.init = function init(el, config) {
         	for(var key in resp.sheets){
         		if(key !== "Teams"){
         			resp.sheets[key].forEach(function(p){
+                        p.country = key;
         				players.push(p);
         			})
         		}
@@ -65,5 +65,18 @@ function findPlayer(el,config){
 }
 
 function createCard(el,config){
-	el.innerHTML = playerHTML;
+    console.log(player);
+    el.querySelector('h1').innerHTML = player.name;
+    el.querySelector('h2').innerHTML = player.country;
+    el.querySelector('.player-number').innerHTML = player.number;
+    el.querySelector('.player-team span').innerHTML = player.club;
+    el.querySelector('.player-goals span').innerHTML = player["goals for country"];
+    el.querySelector('.player-description').innerHTML = player.bio;
+    el.querySelector('#embed-wrapper').setAttribute('data-teamname',player.country)
+
+    if(player.rating_match1 || player.rating_match2 || player.rating_match3){
+
+    }else{
+        el.querySelector('.player-form').innerHTML = "";
+    }
 }

@@ -1,0 +1,17 @@
+<div class="player-outer-container">
+	<div class="player-container {{#if isActive}}activePlayer{{/if}}" data-team="{{../../teamInfo.Team}}" data-player="{{name}}">
+		<div class="player-photo-container {{#if isSpecial}}special-player{{/if}}">
+			<div class="player-gradient-container">
+				<div class="player-photo" style="background-image:url(%assetPath%/assets/imgs/players/{{team}}/{{image}})"></div>
+			</div>
+			<div class="player-number">{{number}}</div>
+		</div>
+		{{#if isSpecial}}
+			<div class="marker-highlighter">
+				<p>{{specialty}}</p>
+				<div class="marker-arrow"></div>
+			</div>
+		{{/if}}
+		<p class="player-name">{{name}}</p>
+	</div>
+</div>

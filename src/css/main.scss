@@ -170,7 +170,7 @@ $lightYellow: #FFF8E9;
 
 .team-container{
 	h3{
-		font-size:30px;
+		font-size:36px;
 		font-family:$f-serif-headline;
 		line-height:1em;
 		margin-bottom:18px;
@@ -306,20 +306,20 @@ $lightYellow: #FFF8E9;
 
 .player-photo-container{
 	position: relative;
-	width:90px;
+	width:100%;
 	transition:transform 0.2s;
 
 	.player-gradient-container{
 		border-radius:9999px;
 	}
 	.player-photo{
-		width:90px;
-		height:90px;
+		width:100%;
+		padding-bottom:100%;
 		margin:0 auto;
 		border-radius:9999px;
 		background-size:cover;
 		mix-blend-mode: screen;
-		-webkit-filter:contrast(1.25) grayscale(0.25) brightness(1.1);
+		-webkit-filter:contrast(1.25) grayscale(0.95) brightness(1.1);
 	}
 	.player-number{
 		width:30px;
@@ -473,7 +473,7 @@ $lightYellow: #FFF8E9;
 	}
 	.team-container{
 		h3{
-			font-size:36px;
+			font-size:42px;
 			margin-bottom:18px;
 		}
 		.team-meta{
@@ -542,10 +542,10 @@ $lightYellow: #FFF8E9;
 		}
 	}
 	.player-photo-container{
-		width:120px;
+		width:100%;
 		.player-photo{
-			width:120px;
-			height:120px;
+			width:100%;
+			padding-bottom:100%;
 		}
 		.player-number{
 			width:36px;
@@ -621,14 +621,14 @@ $lightYellow: #FFF8E9;
 		margin-bottom:12px;
 	}
 	.player-container{
-		width:140px;
+		width:130px;
 		min-height: 180px;
 	}
 	.player-photo-container{
-		width:140px;
+		width:100%;
 		.player-photo{
-			width:140px;
-			height:140px;
+			width:100%;
+			padding-bottom:100%;
 		}
 		.player-number{
 			width:42px;
@@ -726,7 +726,7 @@ $lightYellow: #FFF8E9;
 	}
 	.activePlayer .player-photo-container{
 		.player-photo{
-			-webkit-filter:contrast(1.25) grayscale(0.95) brightness(1.1);
+			-webkit-filter:contrast(1.25) grayscale(0.25) brightness(1.1);
 		}
 
 	}

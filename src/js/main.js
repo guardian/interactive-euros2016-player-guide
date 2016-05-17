@@ -11,6 +11,7 @@ import playerDetailHTML from './text/playerDetailPage.html!text'
 var data = {};
 var teams;
 var currentTeam = "England";
+var currentActivePlayer;
 var windowWidth = window.innerWidth;
 var isMobile = windowWidth < 980 ? true : false;
 var onStart = true;
@@ -76,9 +77,21 @@ export function init(el, context, config, mediator) {
                     {position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},
                     {position:"Goalkeeper"},{position:"Goalkeeper"},{position:"Goalkeeper"}
                 ];
+                var dummyText = {
+                    "bio":"There is no bio yet for this country. So we fill it with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla. Probo facilis vulputate id vix, cu nec modo noluisse deterruisset. Munere definiebas cu est, per vide dicit ridens ne. Mei malis fabulas persequeris cu, ea dictas incorrupte mel.",
+                    "strengths": "Nothing has been filled in yet. So here's some test copy. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla.",
+                    "weaknesses": "Nothing here yet. Filling it in with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla."
+                }
+
+                team.bio = !team.bio ? dummyText.bio : team.bio;
+                team.strengths = !team.strengths ? dummyText.strengths : team.strengths;
+                team.weaknesses = !team.weaknesses ? dummyText.weaknesses : team.weaknesses;
+                
+                console.log(team.Team.toLowerCase())
 
                 data.teams.push({
                     "teamName": team.Team,
+                    "teamNameLowercase": team.Team.toLowerCase(),
                     "teamInfo": team,
                     "players":{
                         "Forwards": players.filter((player)=> player.position === "Forward" || player.position === "Forward (winger)"),
@@ -88,6 +101,7 @@ export function init(el, context, config, mediator) {
                     },
                     "isActive": team.Team === currentTeam ? true : false
                 })
+                console.log(data.teams);
             });
 
             createPage(el,config);
@@ -127,7 +141,11 @@ function createPage(el,config){
     });
 
     if(keyString.team){
-        loadPlayers(keyString.team);
+        if(isMobile){
+            loadPlayers(keyString.team);
+        }else{
+            loadPlayers("England");
+        }
     }else{
         loadPlayers("England");
     }
@@ -141,6 +159,7 @@ function createPage(el,config){
                   if(els[i].getBoundingClientRect().top < windowHeight * 3){
                       var teamName = els[i].getAttribute('data-teamname');
                       loadPlayers(teamName);
+                      els[i].setAttribute('data-loaded','true');
                       els = document.querySelectorAll('.team-container[data-loaded="false"]');
                   }
               }
@@ -169,9 +188,11 @@ function createPage(el,config){
                     player.team = teamName;
                     player.specialty = player["special player? (eg. key player, promising talent, etc)"];
                     player.isSpecial = player.specialty ? true : false;
+                    player.number = index;
                     
                     if(teamName === currentTeam && index === 0){
                         player.isActive = true;
+                        currentActivePlayer = player;
                     }
 
                     return player
@@ -185,8 +206,8 @@ function createPage(el,config){
                 }
                 
                 var teamTemplateParsed = teamTemplate(teamData).replace(/%assetPath%/g,projectAssetpath);
-
                 teamEl.innerHTML = teamTemplateParsed;
+
                 addPlayerEvents(teamEl,teamName,teamData);
             }
         })
@@ -213,14 +234,10 @@ function createPage(el,config){
                             });
                         }
                     };
-                    var playerDetailTemplateRendered = playerDetailTemplate(playerData).replace(/%assetPath%/g,config.assetPath);
-                    var playerOffset = $(playerEl).offset().top;
-
-                    $('#detail-box-container')[0].innerHTML = playerDetailTemplateRendered;
-                    $('#detail-box-container').css('top',playerOffset + 'px');
+                    
                     $('.player-container').removeClass('activePlayer')
                     $(playerEl).addClass('activePlayer')
-                    createLine(playerOffset,playerEl,playerName)
+                    createLine(playerEl,playerData);
                 })  
 
             }
@@ -236,6 +253,9 @@ function createPage(el,config){
            }
 
            $('#detail-overlay-container .detail-container')[0].innerHTML = detailContainerHTML; 
+        }else{
+            var activePlayerEl = $('.player-container.activePlayer')[0];
+            createLine(activePlayerEl,currentActivePlayer);
         }
         
     }
@@ -254,10 +274,12 @@ function createPage(el,config){
         $('#detail-scroll-area').scrollTop(newOffset);
     }
 
-    function createLine(pOffset,pEl,pName){
+    function createLine(pEl,playerData){
+        var pOffset = $(pEl).offset().top;
+        var pName = pEl.querySelector('.player-name').innerHTML;
         var playerChildEls = pEl.parentNode.parentNode.querySelectorAll('.player-container');
         var playerOffset = $(pEl).offset();
-        var lineWidth = 30;
+        var lineWidth = 10;
         var boxOffset = $('#detail-box-container').offset();
         var interactiveOffset = $('.interactive-container').offset();
         var diff = boxOffset.left - playerOffset.left - playerOffset.width - lineWidth;
@@ -271,11 +293,15 @@ function createPage(el,config){
         
         $('#line-container').css('top',playerOffset.top + (playerOffset.width/2))
         $('#line-container').css('left',playerOffset.left + playerOffset.width - interactiveOffset.left)
+        $('#detail-box-container').css('top',pOffset + 'px');
+        var playerDetailTemplateRendered = playerDetailTemplate(playerData).replace(/%assetPath%/g,config.assetPath);
+        $('#detail-box-container')[0].innerHTML = playerDetailTemplateRendered;
 
-        if(playerIndex < playerChildEls.length && playerIndex%3 !== 0){
+        if(playerIndex < playerChildEls.length && playerIndex%4 !== 0){
             $('#player-line').css('width',lineWidth);
             $('#line-box').css('width',diff)
-            $('#line-box').css('height',(playerOffset.width/2) + lineWidth + 10)
+            $('#line-box').css('left',lineWidth)
+            $('#line-box').css('height',(playerOffset.width/2) + lineWidth + 20)
         }else{
             $('#player-line').css('width',diff + lineWidth);
             $('#line-box').css({
@@ -306,8 +332,10 @@ function createPage(el,config){
 function createSketches(){
     var sketchContainer = $('#sketch-container');
     var projectDimensions = sketchContainer[0].getBoundingClientRect(); 
+    var amount = (projectDimensions.height/150) + (projectDimensions.width/150);
+    amount = amount > 180 ? 180 : amount;
     
-    for(var i=0;i<180;i++){
+    for(var i=0;i<amount;i++){
         var block = document.createElement('div');
         var offset = Math.round(Math.random()*20) * 150;
         block.className = "sketch-block";   

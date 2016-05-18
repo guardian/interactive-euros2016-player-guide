@@ -6,3 +6,7 @@ build
 deploy
 cfg/aws-keys.json
 .DS_Store
+sprite-maker/node_modules
+sprite-maker/team_data
+sprite-maker/output
+sprite-maker/.DS_Store

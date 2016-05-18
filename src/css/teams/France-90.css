@@ -1,0 +1,18 @@
+[class^='sprite-'], [class*=' sprite-'] { background-image:url('../img/France-90.jpg'); width:90px; height:90px; }
+.sprite-Kingsley_Coman { background-position:0 0; }
+.sprite-Anthony_Martial { background-position:-90px 0; }
+.sprite-Bacary_Sagna { background-position:0 -90px; }
+.sprite-Blaise_Matuidi { background-position:-90px -90px; }
+.sprite-Christophe_Jallet { background-position:-180px 0; }
+.sprite-Dimitri_Payet { background-position:-180px -90px; }
+.sprite-Hugo_Lloris { background-position:0 -180px; }
+.sprite-Jrmy_Mathieu { background-position:-90px -180px; }
+.sprite-Antoine_Griezmann { background-position:-180px -180px; }
+.sprite-Laurent_Koscielny { background-position:-270px 0; }
+.sprite-Lucas_Digne { background-position:-270px -90px; }
+.sprite-NGolo_Kant { background-position:-270px -180px; }
+.sprite-Olivier_Giroud { background-position:0 -270px; }
+.sprite-Patrice_Evra { background-position:-90px -270px; }
+.sprite-Paul_Pogba { background-position:-180px -270px; }
+.sprite-Steve_Mandanda { background-position:-270px -270px; }
+.sprite-Yohan_Cabaye { background-position:-360px 0; }

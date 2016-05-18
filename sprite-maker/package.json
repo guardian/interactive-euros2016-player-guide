@@ -1,0 +1,12 @@
+{
+  "name": "sprite-maker",
+  "version": "1.0.0",
+  "description": "Sprite maker. Be gentle",
+  "dependencies": {
+    "curlrequest": "^0.5.7",
+    "fs-extra": "^0.30.0",
+    "jspm": "^0.16.31",
+    "node-libcurl": "^1.0.0",
+    "node-sprite-generator": "^0.10.2"
+  }
+}

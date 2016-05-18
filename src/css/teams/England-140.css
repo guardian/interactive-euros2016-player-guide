@@ -1,0 +1,26 @@
+[class^='sprite-'], [class*=' sprite-'] { background-image:url('../img/England-140.jpg'); width:140px; height:140px; }
+.sprite-Jack_Wilshere { background-position:0 0; }
+.sprite-Adam_Lallana { background-position:-140px 0; }
+.sprite-Chris_Smalling { background-position:0 -140px; }
+.sprite-Daniel_Sturridge { background-position:-140px -140px; }
+.sprite-Danny_Drinkwater { background-position:-280px 0; }
+.sprite-Danny_Rose { background-position:-280px -140px; }
+.sprite-Dele_Alli { background-position:0 -280px; }
+.sprite-Eric_Dier { background-position:-140px -280px; }
+.sprite-Fabian_Delph { background-position:-280px -280px; }
+.sprite-Fraser_Forster { background-position:-420px 0; }
+.sprite-Gary_Cahill { background-position:-420px -140px; }
+.sprite-Harry_Kane { background-position:-420px -280px; }
+.sprite-Andros_Townsend { background-position:0 -420px; }
+.sprite-James_Milner { background-position:-140px -420px; }
+.sprite-Jamie_Vardy { background-position:-280px -420px; }
+.sprite-Joe_Hart { background-position:-420px -420px; }
+.sprite-John_Stones { background-position:-560px 0; }
+.sprite-Jordan_Henderson { background-position:-560px -140px; }
+.sprite-Kyle_Walker { background-position:-560px -280px; }
+.sprite-Nathaniel_Clyne { background-position:-560px -420px; }
+.sprite-Raheem_Sterling { background-position:0 -560px; }
+.sprite-Ross_Barkley { background-position:-140px -560px; }
+.sprite-Ryan_Bertrand { background-position:-280px -560px; }
+.sprite-Tom_Heaton { background-position:-420px -560px; }
+.sprite-Wayne_Rooney { background-position:-560px -560px; }

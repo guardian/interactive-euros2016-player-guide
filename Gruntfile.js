@@ -79,7 +79,8 @@ module.exports = function(grunt) {
             },
             'embed': {
                 'files': {
-                    'build/embed.html': ['src/embed.html']
+                    'build/embed.html': ['src/embed.html'],
+                    'build/embed-generator.html': ['src/embed-generator.html']
                 }
             }
         },
@@ -99,7 +100,7 @@ module.exports = function(grunt) {
                 files: [
                     { // BOOT and EMBED
                         expand: true, cwd: 'build/',
-                        src: ['boot.js', 'embed.html','index.html','curl.js'],
+                        src: ['boot.js', 'embed.html','embed-generator.html','index.html','curl.js'],
                         dest: 'deploy/<%= visuals.timestamp %>'
                     },
                     { // ASSETS

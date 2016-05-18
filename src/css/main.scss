@@ -305,7 +305,7 @@ $lightYellow: #FFF8E9;
 	}
 }
 
-.player-photo-container{
+.team-container .player-photo-container{
 	position: relative;
 	width:100%;
 	transition:transform 0.2s;
@@ -542,7 +542,7 @@ $lightYellow: #FFF8E9;
 			font-size:14px;
 		}
 	}
-	.player-photo-container{
+	.team-container .player-photo-container{
 		width:100%;
 		.player-photo{
 			width:100%;
@@ -625,7 +625,7 @@ $lightYellow: #FFF8E9;
 		width:130px;
 		min-height: 180px;
 	}
-	.player-photo-container{
+	.team-container .player-photo-container{
 		width:100%;
 		.player-photo{
 			width:100%;

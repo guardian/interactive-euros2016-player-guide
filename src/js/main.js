@@ -86,8 +86,6 @@ export function init(el, context, config, mediator) {
                 team.bio = !team.bio ? dummyText.bio : team.bio;
                 team.strengths = !team.strengths ? dummyText.strengths : team.strengths;
                 team.weaknesses = !team.weaknesses ? dummyText.weaknesses : team.weaknesses;
-                
-                console.log(team.Team.toLowerCase())
 
                 data.teams.push({
                     "teamName": team.Team,
@@ -101,7 +99,6 @@ export function init(el, context, config, mediator) {
                     },
                     "isActive": team.Team === currentTeam ? true : false
                 })
-                console.log(data.teams);
             });
 
             createPage(el,config);
@@ -189,6 +186,8 @@ function createPage(el,config){
                     player.specialty = player["special player? (eg. key player, promising talent, etc)"];
                     player.isSpecial = player.specialty ? true : false;
                     player.number = index;
+                    player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
+                    console.log(player.simpleName)
                     
                     if(teamName === currentTeam && index === 0){
                         player.isActive = true;

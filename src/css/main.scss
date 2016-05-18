@@ -4,6 +4,7 @@
 @import "general";
 @import "share";
 @import "colors";
+@import "teams";
 
 $lightYellow: #FFF8E9;
 
@@ -316,8 +317,8 @@ $lightYellow: #FFF8E9;
 		width:100%;
 		padding-bottom:100%;
 		margin:0 auto;
+		height:0 !important;
 		border-radius:9999px;
-		background-size:cover;
 		mix-blend-mode: screen;
 		-webkit-filter:contrast(1.25) grayscale(0.95) brightness(1.1);
 	}

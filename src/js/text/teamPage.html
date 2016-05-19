@@ -1,4 +1,8 @@
-<div class="team-container" data-teamname="{{teamInfo.Team}}" data-loaded="false">
+<div class="team-container team-container-{{teamInfo.Team}}" data-teamname="{{teamInfo.Team}}" data-loaded="{{#if lazyload}}true{{else}}false{{/if}}">
+	<div class="team-divider">
+		<div class="divider-1"></div>
+		<div class="divider-2"></div>
+	</div>
 	{{#with teamInfo}}
 		<div class="teaminfo-container">
 			<h3>{{Team}}</h3>
@@ -8,8 +12,10 @@
 				<li>Plays against <strong><ul><li>France</li><li>Czech Republic</li><li>Albania</li></ul></strong></li>
 			</ul>
 			<div class="team-kits">
+				{{#if ../lazyload}}
 				<div class="team-kit team-kit-home"><img src="%assetPath%/assets/imgs/shirts/{{../teamNameLowercase}}_2016_1@400.png" /></div>
 				<div class="team-kit team-kit-away"><img src="%assetPath%/assets/imgs/shirts/{{../teamNameLowercase}}_2016_2@400.png" /></div>
+				{{/if}}
 			</div>
 			<div class="team-description">
 				<p>{{bio}}</p>

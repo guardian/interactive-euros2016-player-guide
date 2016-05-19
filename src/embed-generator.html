@@ -11,6 +11,7 @@
 <body>
     <div class="wrapper">
     	<h1>Embed a player card</h1>
+        <p id="status"><strong>Loading all players.. this might take a few seconds.</strong></p>
     	<p>Select a player</p>
     	<select>
     		<option></option>
@@ -19,6 +20,8 @@
     	<input type="text" id="iframe-url" />
     </div>
     <script>
+        var selectBox = document.querySelector('select');
+        var inputBox = document.querySelector('input');
         var dataSources = [
             {
                 "Team":"England",
@@ -123,12 +126,40 @@
                 if(country < 23){
                     var newCount = country + 1;
                     getData(newCount)
-                    console.log('hoi')
+                    console.log('ooo')
                 }else{
-                    console.log(dataz);
+                    fillSelectField();
                 }
             });
         }
+
+        function fillSelectField(){
+            document.querySelector('#status').innerHTML = "";
+            
+            dataz.forEach(function(team){
+                var optgroup = document.createElement('optgroup');
+                optgroup.label = team.team;
+
+                team.players.forEach(function(player){
+                    var opt = document.createElement('option');
+                    opt.innerHTML = player.name;
+                    opt.value = player.name + '/' + team.team;
+                    optgroup.appendChild(opt)
+                })
+
+                selectBox.appendChild(optgroup);
+            })
+        } 
+
+        selectBox.addEventListener('change',function(e){
+            var player = e.target.value.split('/')[0];
+            var encodedPlayer = encodeURIComponent(player);
+            var country = e.target.value.split('/')[1];
+            var encodedCountry = encodeURIComponent(country);
+
+            var embedUrl = "https://interactive.guim.co.uk/testing/2016/04/euros-player-guide/embed/embed.html?player=" + encodedPlayer + "&team=" + encodedCountry;
+            inputBox.value = embedUrl;
+        })
 
         getData(0);
     </script>

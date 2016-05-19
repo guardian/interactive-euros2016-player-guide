@@ -1,5 +1,6 @@
 @import "fonts";
 @import "colors";
+@import "teams";
 
 html,
 body {
@@ -49,7 +50,8 @@ body {
 			border-radius:9999px;
 		}
 		.player-photo{
-			width:100%;
+			width:100% !important;
+			height:0 !important;
 			padding-bottom:100%;
 			margin:0 auto;
 			border-radius:9999px;
@@ -215,7 +217,7 @@ body {
 			width:calc(100% - 160px)
 		}
 		.player-photo-container{
-			width:140px;
+			width:130px;
 		}
 		.player-primary-info ul{
 			width:calc(100% - 180px);

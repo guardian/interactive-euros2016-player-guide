@@ -151,7 +151,9 @@ function createPage(el,config){
         if(!isMobile){
           var els = document.querySelectorAll('.team-container[data-loaded="false"]');
           var windowHeight = window.innerHeight;
-          window.addEventListener('scroll', function(e){
+          window.addEventListener( 'scroll', debounce(checkScrollHeight, 20) );
+          
+          function checkScrollHeight(){
               for(var i=0;i<els.length;i++){
                   if(els[i].getBoundingClientRect().top < windowHeight * 3){
                       var teamName = els[i].getAttribute('data-teamname');
@@ -160,7 +162,7 @@ function createPage(el,config){
                       els = document.querySelectorAll('.team-container[data-loaded="false"]');
                   }
               }
-          });   
+          };   
         }
         
     }
@@ -168,12 +170,12 @@ function createPage(el,config){
     function loadPlayers(teamName){
         var teamData = data.teams.filter((team) => team.teamName === teamName)[0];
         var teamEl = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
+        var teamContainerEl = document.querySelector('#teams-container');
+
         if(!isMobile){
             teamEl.setAttribute('data-loaded','true');
-        }else{
-            teamEl = document.querySelector('#teams-container')
         }
-        
+
         reqwest({
             url: 'https://interactive.guim.co.uk/docsdata-test/' + dataSources[teamName] + '.json',
             type: 'json',
@@ -187,7 +189,6 @@ function createPage(el,config){
                     player.isSpecial = player.specialty ? true : false;
                     player.number = index;
                     player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
-                    console.log(player.simpleName)
                     
                     if(teamName === currentTeam && index === 0){
                         player.isActive = true;
@@ -203,9 +204,25 @@ function createPage(el,config){
                     "Defenders": players.filter((player)=> player.position === "Defender"),
                     "Goalkeepers": players.filter((player)=> player.position === "Goalkeeper")
                 }
+
+                teamData.lazyload = true;
                 
                 var teamTemplateParsed = teamTemplate(teamData).replace(/%assetPath%/g,projectAssetpath);
-                teamEl.innerHTML = teamTemplateParsed;
+                
+                if(!isMobile){
+                    var tempHTMLHolder = document.createElement('div')
+                    tempHTMLHolder.innerHTML = teamTemplateParsed;
+                    var tempInnerHTML = tempHTMLHolder.querySelector('.team-container').innerHTML;
+
+                    teamEl.innerHTML = tempInnerHTML;
+                }else{
+                    teamContainerEl.innerHTML = teamTemplateParsed;
+                    var teamElMob = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
+                    teamElMob.setAttribute('data-loaded','true');
+                }
+
+                console.log(teamName)
+                
 
                 addPlayerEvents(teamEl,teamName,teamData);
             }
@@ -292,7 +309,7 @@ function createPage(el,config){
         
         $('#line-container').css('top',playerOffset.top + (playerOffset.width/2))
         $('#line-container').css('left',playerOffset.left + playerOffset.width - interactiveOffset.left)
-        $('#detail-box-container').css('top',pOffset + 'px');
+        $('#detail-box-container').css('transform','translateY(' + pOffset + 'px)');
         var playerDetailTemplateRendered = playerDetailTemplate(playerData).replace(/%assetPath%/g,config.assetPath);
         $('#detail-box-container')[0].innerHTML = playerDetailTemplateRendered;
 
@@ -343,4 +360,19 @@ function createSketches(){
         block.style.left = Math.random()*(projectDimensions.width - 150) + "px";
         sketchContainer.append(block)
     }
+}
+
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) { func.apply(context, args); }
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) { func.apply(context, args); }
+    };
 }

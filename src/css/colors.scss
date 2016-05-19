@@ -8,38 +8,143 @@
 		color: #333;
 	}
 
-*[data-teamname='England']{
+*[data-teamname='France']{
+	$mainColor1 : #2E4D6A;
+	$mainColor2 : #1D5AB0;
+	$gradientColor : #8D90A5;
+
 	.player-gradient-container{
-		background:#652D2D;
+		background:$gradientColor;
 	}
 	.player-photo-container .player-number{
-		background:#BB3030;
+		background:$mainColor2;
 	}
 	.player-header h2{
-		color: #BB3030;
+		color: $mainColor2;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li{
+		border-color:$mainColor2 !important;
 	}
 }
+*[data-teamname='England']{
+	$mainColor1 : #1C58BA;
+	$mainColor2 : #F2F2F2;
+	$gradientColor : #93A1B8;
 
-*[data-teamname='France']{
 	.player-gradient-container{
-		background:#1D2351;
+		background:$gradientColor;
 	}
 	.player-photo-container .player-number{
-		background:#303EBB;
+		background:$mainColor1;
 	}
 	.player-header h2{
-		color: #303EBB;
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li{
+		border-color:$mainColor1 !important;
 	}
 }
 
 *[data-teamname='Germany']{
+	$mainColor1 : #000;
+	$mainColor2 : #eee;
+	$gradientColor : #A76B6B;
+
 	.player-gradient-container{
-		background:linear-gradient(200deg, #262626 0%, #550909 50%, #B2B294 100%);
+		background:$gradientColor;
 	}
 	.player-photo-container .player-number{
-		background:#240000;
+		background:$mainColor1;
 	}
 	.player-header h2{
-		color: #240000;
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li{
+		border-color:$mainColor1 !important;
 	}
 }
+
+*[data-teamname='Belgium']{
+	$mainColor1 : #DE0003;
+	$mainColor2 : #F5B500;
+	$gradientColor : #C07778;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li{
+		border-color:$mainColor2 !important;
+	}
+}
+
+*[data-teamname='Italy']{
+	$mainColor1 : #1D93E2;
+	$mainColor2 : #EAF4FF;
+	$gradientColor : #89BBDD;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li{
+		border-color:$mainColor1 !important;
+	}
+}
+
+

@@ -13,6 +13,10 @@ module.exports = function(grunt) {
                 files: ['src/js/**/*'],
                 tasks: ['shell:interactive', 'shell:embed'],
             },
+            generator: {
+                files: ['src/embed-generator.html'],
+                tasks: ['template:embed']
+            },
             css: {
                 files: ['src/css/**/*'],
                 tasks: ['sass'],

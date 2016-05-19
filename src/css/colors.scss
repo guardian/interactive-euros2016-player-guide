@@ -147,4 +147,32 @@
 	}
 }
 
+*[data-teamname='Sweden']{
+	$mainColor1 : #0071C7;
+	$mainColor2 : #EBC02F;
+	$gradientColor : #9D9564;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li{
+		border-color:$mainColor1 !important;
+	}
+}
+
 

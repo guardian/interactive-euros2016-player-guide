@@ -175,7 +175,8 @@ $lightYellow: #FFF8E9;
 		font-size:36px;
 		font-family:$f-serif-headline;
 		line-height:1em;
-		margin-bottom:18px;
+		margin-bottom:36px;
+		margin-top:6px;
 	}
 
 	.team-divider{
@@ -349,6 +350,7 @@ $lightYellow: #FFF8E9;
 		text-align: center;
 		padding-top:6px;
 		line-height:1em;
+		font-size:16px;
 	}
 }
 
@@ -490,7 +492,8 @@ $lightYellow: #FFF8E9;
 	.team-container{
 		h3{
 			font-size:42px;
-			margin-bottom:18px;
+			margin-bottom:42px;
+			margin-top:12px;
 		}
 		.team-meta{
 			width: 50%;
@@ -618,7 +621,6 @@ $lightYellow: #FFF8E9;
 	.team-container{
 		h3{
 			font-size:48px;
-			margin-bottom:24px;
 			width:calc(100% - 260px);
 		}
 		.team-description{
@@ -711,9 +713,7 @@ $lightYellow: #FFF8E9;
 	}
 	.team-container{
 		margin-bottom:90px;
-		h3{
-			margin-top:12px;
-		}
+		
 		h5{
 			font-size:21px;
 			margin:36px 0 18px;

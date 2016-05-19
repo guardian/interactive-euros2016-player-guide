@@ -217,22 +217,18 @@ function createPage(el,config){
                     teamEl.innerHTML = tempInnerHTML;
                 }else{
                     teamContainerEl.innerHTML = teamTemplateParsed;
-                    var teamElMob = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
-                    teamElMob.setAttribute('data-loaded','true');
+                    teamContainerEl.querySelector('.team-container').setAttribute('data-loaded','true');
                 }
-
-                console.log(teamName)
                 
-
-                addPlayerEvents(teamEl,teamName,teamData);
+                addPlayerEvents(teamName,teamData);
             }
         })
     }
 
-    function addPlayerEvents(teamEl,teamName,teamData){
+    function addPlayerEvents(teamName,teamData){
+        var teamEl = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
         $('.player-container',teamEl).each(function(playerEl){
             var playerName = playerEl.querySelector('.player-name').innerHTML;
-            var teamName = playerEl.getAttribute('data-team');
 
             if(isMobile){
                 playerEl.addEventListener('click',function(e){
@@ -278,6 +274,11 @@ function createPage(el,config){
     
 
     function openDetailContainer(playerName,teamName){
+        var detailContainerEl = document.querySelector('#detail-overlay-container');
+            detailContainerEl.setAttribute('data-loaded','true');
+            detailContainerEl.setAttribute('data-teamname',teamName);
+
+        console.log(teamName)
         var playerDetailEl = $('.detail-player-container[data-playername="' + playerName + '"]');
         var playerDetailOffset = playerDetailEl.offset().top;
         var parentContainerOffset = $('#detail-scroll-area').offset().top;

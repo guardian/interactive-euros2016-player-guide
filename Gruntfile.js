@@ -185,7 +185,7 @@ module.exports = function(grunt) {
                     { // EMBED
                         expand: true,
                         cwd: 'deploy/<%= visuals.timestamp %>',
-                        src: ['embed.html'],
+                        src: ['embed.html','embed-generator.html'],
                         dest: '<%= visuals.s3.path %>/embed',
                         params: { CacheControl: 'max-age=60' }
                     }

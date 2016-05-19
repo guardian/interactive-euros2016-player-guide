@@ -213,13 +213,17 @@ function createTeam(team, players){
 
 
 
-	makeTeamSprite(team, players, 180, src);
-	makeTeamSprite(team, players, 240, src);
-	makeTeamSprite(team, players, 260, src);
+	makeTeamSprite(team, players, 180, src, function(){
+		makeTeamSprite(team, players, 240, src, function(){
+			makeTeamSprite(team, players, 260, src);
+		});
+	});
+	
+	
 
 }
 
-function makeTeamSprite(team, players, size, src){
+function makeTeamSprite(team, players, size, src, callback){
 
 	var orig_width = 400;
 	var multiplier_width = size / 400;
@@ -234,7 +238,7 @@ function makeTeamSprite(team, players, size, src){
 	    spritePath: img_path,
 	    stylesheet: 'prefixed-css',
 	    stylesheetPath: css_path,
-	    layout: 'vertical',
+	    layout: 'packed',
 	    layoutOptions: {
 	        scaling: multiplier_width
 
@@ -244,8 +248,24 @@ function makeTeamSprite(team, players, size, src){
 	    }
 	}, function (err) {
 	    console.log(err);
+	    	if(callback){
+	    		callback();
+	    	}
 
-	    	moveIntoPlace( css_path, img_path, team + '-' + size );
+			fs.readFile(css_path, 'utf8', function (err,data) {
+			  if (err) {
+			    return console.log(err);
+			  }
+			  var result = data.replace('../img/', 'assets/imgs/teams/');
+
+			  fs.writeFile(css_path, result, 'utf8', function (err) {
+			     if (err) return console.log(err);
+
+			     moveIntoPlace( css_path, img_path, team + '-' + size );
+			  });
+			});
+	    	
+	    	
 	});
 		
 

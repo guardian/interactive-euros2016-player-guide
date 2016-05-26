@@ -10,7 +10,7 @@ import playerDetailHTML from './text/playerDetailPage.html!text'
 
 var data = {};
 var teams;
-var currentTeam = "England";
+var currentTeam = "Albania";
 var currentActivePlayer;
 var windowWidth = window.innerWidth;
 var isMobile = windowWidth < 980 ? true : false;
@@ -45,8 +45,6 @@ var dataSources = {
 }
 var masterTeamData = "1We0iF5KgHN0LlQjFn9C9onBrX1ovVJnsbTv9qTKBQn0";
 
-data.teamNames = ["England","Germany","France","Sweden","Italy","Belgium","Wales Rep of Ireland","N Ireland","Spain","Portugal","Russia","Ukraine","Romania Croatia","Turkey","Albania","Poland","Austria","Switzerland", "Czech Republic","Slovakia","Hungary","Iceland"];
-
 function $(selector,context){
     return bonzo(qwery(selector,context));
 }
@@ -70,7 +68,7 @@ export function init(el, context, config, mediator) {
             data.teams = [];
             data.isMobile = isMobile;
 
-            resp.sheets.Teams.forEach(function(team){
+            resp.sheets.Teams.forEach(function(team,i){
                 var players = [
                     {position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},
                     {position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},
@@ -86,10 +84,18 @@ export function init(el, context, config, mediator) {
                 team.bio = !team.bio ? dummyText.bio : team.bio;
                 team.strengths = !team.strengths ? dummyText.strengths : team.strengths;
                 team.weaknesses = !team.weaknesses ? dummyText.weaknesses : team.weaknesses;
+                team.opponents = resp.sheets.Teams.filter(function(opponent){
+                    return opponent.Group === team.Group && opponent.Team !== team.Team;
+                }).map(function(opponent){
+                    return opponent.Team;
+                })
 
                 data.teams.push({
                     "teamName": team.Team,
                     "teamNameLowercase": team.Team.toLowerCase(),
+                    "group": team.Group,
+                    "opponents":team.opponents,
+                    "newGroup": (i) % 4 === 0 ? true : false,
                     "teamInfo": team,
                     "players":{
                         "Forwards": players.filter((player)=> player.position === "Forward" || player.position === "Forward (winger)"),
@@ -100,6 +106,8 @@ export function init(el, context, config, mediator) {
                     "isActive": team.Team === currentTeam ? true : false
                 })
             });
+
+            console.log(data);
 
             createPage(el,config);
         }
@@ -141,10 +149,10 @@ function createPage(el,config){
         if(isMobile){
             loadPlayers(keyString.team);
         }else{
-            loadPlayers("England");
+            loadPlayers(currentTeam);
         }
     }else{
-        loadPlayers("England");
+        loadPlayers(currentTeam);
     }
 
     function scrollInit(){
@@ -190,8 +198,9 @@ function createPage(el,config){
                     player.isSpecial = player.specialty ? true : false;
                     player.number = index;
                     player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
-                    
+                    console.log(teamName,currentTeam)
                     if(teamName === currentTeam && player.position === "Forward" && !foundActive){
+                        console.log('oi')
                         player.isActive = true;
                         currentActivePlayer = player;
                         foundActive = true;
@@ -342,8 +351,8 @@ function createPage(el,config){
         var activePlayerOffset = $('.activePlayer').offset().top;
         $('#detail-box-container').css('top',activePlayerOffset + 'px');
     }
-
-    createSketches();
+    setTimeout(createSketches,1000);
+    
     scrollInit();
 }
 
@@ -352,7 +361,7 @@ function createSketches(){
     var sketchContainer = $('#sketch-container');
     var projectDimensions = sketchContainer[0].getBoundingClientRect(); 
     var amount = (projectDimensions.height/150) + (projectDimensions.width/150);
-    amount = amount > 180 ? 180 : amount;
+    amount = amount > 140 ? 140 : amount;
     
     // for(var i=0;i<amount;i++){
         var block = document.createElement('div');

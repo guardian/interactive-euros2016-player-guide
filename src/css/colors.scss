@@ -7,11 +7,38 @@
 	.player-header h2{
 		color: #333;
 	}
+*[data-teamname='Albania']{
+	$mainColor1 : #CB3733;
+	$mainColor2 : #000000;
+	$gradientColor : #290302;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
 
 *[data-teamname='France']{
 	$mainColor1 : #2E4D6A;
 	$mainColor2 : #1D5AB0;
-	$gradientColor : #8D90A5;
+	$gradientColor : #051225;
 
 	.player-gradient-container{
 		background:$gradientColor;
@@ -35,10 +62,155 @@
 		border-color:$mainColor2 !important;
 	}
 }
+
+*[data-teamname='Romania']{
+	$mainColor1 : #FFDC01;
+	$mainColor2 : #D42217;
+	$gradientColor : #A09B7B;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor2;
+	}
+	.player-photo-container .player-photo{
+		mix-blend-mode:hard-light;
+	}
+	.player-header h2{
+		color: $mainColor2;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor2 !important;
+	}
+}
+
+*[data-teamname='Switzerland']{
+	$mainColor1 : #D8171E;
+	$mainColor2 : whitesmoke;
+	$gradientColor : #360000;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor2;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor2 !important;
+	}
+}
+
+
 *[data-teamname='England']{
 	$mainColor1 : #1C58BA;
 	$mainColor2 : #F2F2F2;
-	$gradientColor : #93A1B8;
+	$gradientColor : #22252B;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Russia']{
+	$mainColor1 : #750000;
+	$mainColor2 : #F3E4D3;
+	$gradientColor : #290000;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Slovakia']{
+	$mainColor1 : #1971B0;
+	$mainColor2 : whitesmoke;
+	$gradientColor : #1971B0;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Wales']{
+	$mainColor1 : #E11A22;
+	$mainColor2 : #10702D;
+	$gradientColor : #250001;
 
 	.player-gradient-container{
 		background:$gradientColor;
@@ -66,7 +238,205 @@
 *[data-teamname='Germany']{
 	$mainColor1 : #000;
 	$mainColor2 : #eee;
-	$gradientColor : #A76B6B;
+	$gradientColor : #000;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='N Ireland']{
+	$mainColor1 : #1E8354;
+	$mainColor2 : #1F2344;
+	$gradientColor : #001E10;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Poland']{
+	$mainColor1 : #B82039;
+	$mainColor2 : whitesmoke;
+	$gradientColor : #3B0B11;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+
+*[data-teamname='Ukraine']{
+	$mainColor1 : #F4D64D;
+	$mainColor2 : #4160B8;
+	$gradientColor : #4160B8;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Croatia']{
+	$mainColor1 : #C71A00;
+	$mainColor2 : #2879EB;
+	$gradientColor : #2879EB;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Czech Republic']{
+	$mainColor1 : #B8222E;
+	$mainColor2 : #026EBC;
+	$gradientColor : #B8222E;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+
+*[data-teamname='Spain']{
+	$mainColor1 : #F00A19;
+	$mainColor2 : #F5B05B;
+	$gradientColor : #F00A19;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Turkey']{
+	$mainColor1 : #8F1318;
+	$mainColor2 : #EE291F;
+	$gradientColor : #8F1318;
 
 	.player-gradient-container{
 		background:$gradientColor;
@@ -94,7 +464,7 @@
 *[data-teamname='Belgium']{
 	$mainColor1 : #DE0003;
 	$mainColor2 : #F5B500;
-	$gradientColor : #C07778;
+	$gradientColor : #500405;
 
 	.player-gradient-container{
 		background:$gradientColor;
@@ -120,9 +490,37 @@
 }
 
 *[data-teamname='Italy']{
-	$mainColor1 : #1D93E2;
+	$mainColor1 : #006BC9;
 	$mainColor2 : #EAF4FF;
-	$gradientColor : #89BBDD;
+	$gradientColor : #152C39;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Rep of Ireland']{
+	$mainColor1 : #009157;
+	$mainColor2 : whitesmoke;
+	$gradientColor : #009157;
 
 	.player-gradient-container{
 		background:$gradientColor;
@@ -150,7 +548,38 @@
 *[data-teamname='Sweden']{
 	$mainColor1 : #0071C7;
 	$mainColor2 : #EBC02F;
-	$gradientColor : #9D9564;
+	$gradientColor : #79755D;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-photo-container .player-photo{
+		mix-blend-mode:overlay;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Austria']{
+	$mainColor1 : #CA131A;
+	$mainColor2 : whitesmoke;
+	$gradientColor : #79755D;
 
 	.player-gradient-container{
 		background:$gradientColor;
@@ -174,5 +603,95 @@
 		border-color:$mainColor1 !important;
 	}
 }
+
+*[data-teamname='Hungary']{
+	$mainColor1 : #3C8068;
+	$mainColor2 : #99152E;
+	$gradientColor : #3C8068;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+*[data-teamname='Iceland']{
+	$mainColor1 : #0051A3;
+	$mainColor2 : #C8130A;
+	$gradientColor : #3C8068;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+
+*[data-teamname='Portugal']{
+	$mainColor1 : #EA2B2C;
+	$mainColor2 : #2F594B;
+	$gradientColor : #3C8068;
+
+	.player-gradient-container{
+		background:$gradientColor;
+	}
+	.player-photo-container .player-number{
+		background:$mainColor1;
+	}
+	.player-header h2{
+		color: $mainColor1;
+	}
+	.team-divider{
+		.divider-1{
+			background:$mainColor1;
+		}
+		.divider-2{
+			background:$mainColor2;
+		}
+	}
+
+	.team-kits,.team-meta li,.team-meta{
+		border-color:$mainColor1 !important;
+	}
+}
+
+
+
+
+
 
 

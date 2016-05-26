@@ -14,7 +14,10 @@
 		    	<div id="teams-strip">
 		    		<p>Select a team</p>
 			        {{#each teams}}
-			            <button class="menu-button {{#if isActive}}active-team{{/if}}">{{teamName}}</button>
+			      		{{#if newGroup}}
+			      			<div class="groupLabel">Group {{group}}</div>
+			      		{{/if}}
+			            <button class="menu-button {{#if isActive}}active-team{{/if}} {{#if newGroup}}new-group{{/if}}">{{teamName}}</button>
 			        {{/each}}
 			    </div>
 		    </div>

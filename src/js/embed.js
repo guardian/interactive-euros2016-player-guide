@@ -55,7 +55,7 @@ window.init = function init(el, config) {
         		console.error('no response')
         		return false
         	}
-
+            console.log(resp);
         	
 			resp.sheets.Players.forEach(function(p){
                 p.country = embedInfo.team;
@@ -95,13 +95,68 @@ function createCard(el,config){
     el.querySelector('.player-number').innerHTML = player.number;
     el.querySelector('.player-team span').innerHTML = player.club;
     el.querySelector('.player-goals span').innerHTML = player["goals for country"];
+    el.querySelector('.player-caps span').innerHTML = player.caps;
     el.querySelector('.player-description').innerHTML = player.bio;
     el.querySelector('.player-photo').className += " sprite-" + player.simpleName;
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team)
 
-    if(player.rating_match1 || player.rating_match2 || player.rating_match3){
-        
-    }else{
+    player.rating = [];
+    player.hasRating = false;
+    for(var key in player){
+        if(key.toLowerCase().indexOf('rating_match') > -1){
+            var count = key.toLowerCase().replace('rating_match','');
+            player.rating.push({
+                "match" : count,
+                "rating" : player[key]
+            })
+
+            if(player.key){
+                player.hasRating = true;
+            }
+        }
+    }
+
+    if(player.hasRating){
         el.querySelector('.player-form').innerHTML = "";
+    }else{
+        var ratingContainer = el.querySelector('.player-form span');
+        var svgPath = el.querySelector('#line-container path');
+
+        player.rating.forEach(function(r,i){
+            var dot = document.createElement('div');
+            var offsetBottom = (r.rating/5)*100;
+            var offsetLeft = (i/(player.rating.length-1)) * 100;
+            
+            dot.className = "rating-dot";
+            dot.style.left = offsetLeft + "%";
+            dot.style.bottom = offsetBottom + "%";
+
+            var pathAttr = svgPath.getAttribute('d');
+
+            if(i===0){
+                pathAttr = "M4 " + (100 - offsetBottom + 1);
+            }else{
+                if(r.rating !== ""){
+                    pathAttr += " L" + (offsetLeft + 4) + " " + (100 - offsetBottom + 1);
+                }
+            }
+
+            svgPath.setAttribute('d',pathAttr);
+
+            if(r.rating === ""){
+                dot.className += " empty";
+                if(i !== player.rating.length -1 && i !== 0){
+                    var prevRating = player.rating[i-1].rating;
+                    var nextRating = player.rating[i+1].rating;
+                    var avgRating = (Number(prevRating) + Number(nextRating))/2;
+                    var offsetBottom = (avgRating/5)*100;
+                    dot.style.bottom = offsetBottom + "%";
+                }else{
+                    dot.style.bottom = "65%";
+                }
+            }
+
+            ratingContainer.appendChild(dot);
+        })
     }
 }

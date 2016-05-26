@@ -182,6 +182,7 @@ function createPage(el,config){
             crossOrigin: true,
             success: (resp) => {
                 var playerData = resp.sheets.Players;
+                var foundActive = false;
                 var players = playerData.map(function(player,index){
                     player.image = player.name.replace(/\s/g,'_').replace(/\'/g,'') + ".jpg";
                     player.team = teamName;
@@ -190,9 +191,10 @@ function createPage(el,config){
                     player.number = index;
                     player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
                     
-                    if(teamName === currentTeam && index === 0){
+                    if(teamName === currentTeam && player.position === "Forward" && !foundActive){
                         player.isActive = true;
                         currentActivePlayer = player;
+                        foundActive = true;
                     }
 
                     return player
@@ -352,15 +354,46 @@ function createSketches(){
     var amount = (projectDimensions.height/150) + (projectDimensions.width/150);
     amount = amount > 180 ? 180 : amount;
     
-    for(var i=0;i<amount;i++){
+    // for(var i=0;i<amount;i++){
         var block = document.createElement('div');
-        var offset = Math.round(Math.random()*20) * 150;
-        block.className = "sketch-block";   
-        block.style.backgroundPosition = "0 -" + offset + "px";
-        block.style.top = Math.random()*projectDimensions.height + "px";
-        block.style.left = Math.random()*(projectDimensions.width - 150) + "px";
-        sketchContainer.append(block)
-    }
+        // var offset = Math.round(Math.random()*20) * 150;
+        var gridX = Math.floor(projectDimensions.width/150);
+        var gridY = Math.round(projectDimensions.height/150);
+
+        for(var x=0; x<gridX; x++){
+            for(var y=0; y<gridY; y++){
+                var chance = 0.1;
+                if(!isMobile){
+                    if(gridX - x < 2 || x === 0){
+                        chance = 0.2;
+                    }
+                }else{
+                    chance = 0.2;
+                }
+                
+                if(Math.random()<chance){
+                    var block = document.createElement('div');
+                    var offset = Math.round(Math.random()*20) * 150;
+                    block.className = "sketch-block"; 
+                    block.style.top = (y * 150) + "px";
+                    block.style.left = (x * 150) + "px";
+                    block.style.backgroundPosition = "0 -" + offset + "px";
+                    sketchContainer.append(block)
+                }
+                
+            }
+        }
+        console.log(gridX,gridY)
+
+        // var leftPos = Math.random() * projectDimensions.width - 150;
+
+
+        // block.className = "sketch-block";   
+        // block.style.backgroundPosition = "0 -" + offset + "px";
+        // block.style.top = Math.random()*projectDimensions.height + "px";
+        // block.style.left = Math.random()*(projectDimensions.width - 150) + "px";
+        // sketchContainer.append(block)
+    // }
 }
 
 function debounce(func, wait, immediate) {

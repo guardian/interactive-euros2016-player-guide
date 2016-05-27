@@ -70,10 +70,10 @@ export function init(el, context, config, mediator) {
 
             resp.sheets.Teams.forEach(function(team,i){
                 var players = [
-                    {position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},
-                    {position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},
+                    {position:"Goalkeeper"},{position:"Goalkeeper"},{position:"Goalkeeper"},
                     {position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},{position:"Defender"},
-                    {position:"Goalkeeper"},{position:"Goalkeeper"},{position:"Goalkeeper"}
+                    {position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},
+                    {position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"}
                 ];
                 var dummyText = {
                     "bio":"There is no bio yet for this country. So we fill it with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla. Probo facilis vulputate id vix, cu nec modo noluisse deterruisset. Munere definiebas cu est, per vide dicit ridens ne. Mei malis fabulas persequeris cu, ea dictas incorrupte mel.",
@@ -106,8 +106,6 @@ export function init(el, context, config, mediator) {
                     "isActive": team.Team === currentTeam ? true : false
                 })
             });
-
-            console.log(data);
 
             createPage(el,config);
         }
@@ -145,6 +143,34 @@ function createPage(el,config){
         })
     });
 
+
+
+    var quickNav = document.querySelector('#quicknav-container select');
+    data.teams.forEach(function(team){
+        var optionEl = document.createElement('option');
+        optionEl.innerHTML = team.teamName;
+        quickNav.appendChild(optionEl);
+    })
+
+    quickNav.addEventListener('change',function(e){
+        currentTeam = e.target.value;
+        $('.menu-button').removeClass('active-team');
+        $('.menu-button[data-buttonname="' + currentTeam + '"]').addClass('active-team');
+        if(isMobile){
+            $('#detail-overlay-container').removeClass('opened');
+            $('#detail-overlay-container').attr('data-teamname', currentTeam);
+            
+            loadPlayers(currentTeam);
+
+            var pageOffset = $('#teams-container').offset().top - 36;
+            $('body').scrollTop(pageOffset)
+        }else{
+            var teamEl = $('.team-container[data-teamname="'+ currentTeam +'"]');
+            var teamOffset = teamEl.offset().top - 36;
+            $('body').scrollTop(teamOffset)
+        }  
+    })
+
     if(keyString.team){
         if(isMobile){
             loadPlayers(keyString.team);
@@ -172,6 +198,23 @@ function createPage(el,config){
               }
           };   
         }
+
+        var teamsContainer = document.querySelector('#teams-container');
+        var quickNav = document.querySelector('#quicknav-container');
+        var headerVisible = true;
+
+        window.addEventListener( 'scroll', debounce(showQuicknav, 40) );
+
+        function showQuicknav(){
+            if(teamsContainer.getBoundingClientRect().top < 0 && headerVisible){
+                headerVisible = false;
+                quickNav.style.opacity = 1
+                
+            }else if(teamsContainer.getBoundingClientRect().top > 0 && !headerVisible){
+                headerVisible = true;
+                quickNav.style.opacity = 0
+            }
+        }
         
     }
 
@@ -182,6 +225,9 @@ function createPage(el,config){
 
         if(!isMobile){
             teamEl.setAttribute('data-loaded','true');
+        }else{
+            teamContainerEl.style.minHeight = "1200px"
+            teamContainerEl.innerHTML = "Loading " + currentTeam
         }
 
         reqwest({
@@ -210,10 +256,10 @@ function createPage(el,config){
                 })
 
                 teamData.players = {
-                    "Forwards": players.filter((player)=> player.position === "Forward" || player.position === "Forward (winger)"),
-                    "Midfielders": players.filter((player)=> player.position === "Midfielder"),
+                    "Goalkeepers": players.filter((player)=> player.position === "Goalkeeper"),
                     "Defenders": players.filter((player)=> player.position === "Defender"),
-                    "Goalkeepers": players.filter((player)=> player.position === "Goalkeeper")
+                    "Midfielders": players.filter((player)=> player.position === "Midfielder"),
+                    "Forwards": players.filter((player)=> player.position === "Forward" || player.position === "Forward (winger)")
                 }
 
                 teamData.lazyload = true;
@@ -289,7 +335,6 @@ function createPage(el,config){
             detailContainerEl.setAttribute('data-loaded','true');
             detailContainerEl.setAttribute('data-teamname',teamName);
 
-        console.log(teamName)
         var playerDetailEl = $('.detail-player-container[data-playername="' + playerName + '"]');
         var playerDetailOffset = playerDetailEl.offset().top;
         var parentContainerOffset = $('#detail-scroll-area').offset().top;

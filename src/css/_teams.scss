@@ -9,7 +9,7 @@
 	}
 }
 
-.team-container[data-teamname="France"][data-loaded="true"]{
+*[data-teamname="France"][data-loaded="true"]{
 	@import "teams/France-180";
 	
 	@media(min-width:480px){
@@ -20,7 +20,7 @@
 		@import "teams/France-260";
 	}
 }
-.team-container[data-teamname="Albania"][data-loaded="true"]{
+*[data-teamname="Albania"][data-loaded="true"]{
 	@import "teams/Albania-180";
 	
 	@media(min-width:480px){
@@ -31,7 +31,7 @@
 		@import "teams/Albania-260";
 	}
 }
-.team-container[data-teamname="Belgium"][data-loaded="true"]{
+*[data-teamname="Belgium"][data-loaded="true"]{
 	@import "teams/Belgium-180";
 	
 	@media(min-width:480px){
@@ -42,7 +42,7 @@
 		@import "teams/Belgium-260";
 	}
 }
-.team-container[data-teamname="Germany"][data-loaded="true"]{
+*[data-teamname="Germany"][data-loaded="true"]{
 	@import "teams/Germany-180";
 	
 	@media(min-width:480px){
@@ -53,7 +53,7 @@
 		@import "teams/Germany-260";
 	}
 }
-.team-container[data-teamname="Italy"][data-loaded="true"]{
+*[data-teamname="Italy"][data-loaded="true"]{
 	@import "teams/Italy-180";
 	
 	@media(min-width:480px){
@@ -64,7 +64,7 @@
 		@import "teams/Italy-260";
 	}
 }
-.team-container[data-teamname="Romania"][data-loaded="true"]{
+*[data-teamname="Romania"][data-loaded="true"]{
 	@import "teams/Romania-180";
 	
 	@media(min-width:480px){
@@ -75,7 +75,7 @@
 		@import "teams/Romania-260";
 	}
 }
-.team-container[data-teamname="Russia"][data-loaded="true"]{
+*[data-teamname="Russia"][data-loaded="true"]{
 	@import "teams/Russia-180";
 	
 	@media(min-width:480px){
@@ -86,7 +86,7 @@
 		@import "teams/Russia-260";
 	}
 }
-.team-container[data-teamname="Sweden"][data-loaded="true"]{
+*[data-teamname="Sweden"][data-loaded="true"]{
 	@import "teams/Sweden-180";
 	
 	@media(min-width:480px){
@@ -97,7 +97,7 @@
 		@import "teams/Sweden-260";
 	}
 }
-.team-container[data-teamname="Switzerland"][data-loaded="true"]{
+*[data-teamname="Switzerland"][data-loaded="true"]{
 	@import "teams/Switzerland-180";
 	
 	@media(min-width:480px){
@@ -108,7 +108,7 @@
 		@import "teams/Switzerland-260";
 	}
 }
-.team-container[data-teamname="Wales"][data-loaded="true"]{
+*[data-teamname="Wales"][data-loaded="true"]{
 	@import "teams/Wales-180";
 	
 	@media(min-width:480px){

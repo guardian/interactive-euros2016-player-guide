@@ -4,6 +4,12 @@
 		<div id="line-box"></div>
 	</div>
 	<div id="sketch-container"></div>
+	<div id="quicknav-container">
+		<img src="%assetPath%/assets/imgs/quicknav-icon.png" />
+		<p class="quicknav-label">Jump to other team</p>
+		<select>
+		</select>
+	</div>
 	<header id="interactive-header">
 		<div id="header-wrapper">
 			<p>Euros 2016</p>
@@ -17,7 +23,7 @@
 			      		{{#if newGroup}}
 			      			<div class="groupLabel">Group {{group}}</div>
 			      		{{/if}}
-			            <button class="menu-button {{#if isActive}}active-team{{/if}} {{#if newGroup}}new-group{{/if}}">{{teamName}}</button>
+			            <button class="menu-button {{#if isActive}}active-team{{/if}} {{#if newGroup}}new-group{{/if}}" data-buttonname="{{teamName}}">{{teamName}}</button>
 			        {{/each}}
 			    </div>
 		    </div>

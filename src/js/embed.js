@@ -5,6 +5,7 @@ import embedHTML from './text/embed.html!text'
 var players = [];
 var player;
 var embedInfo = {};
+var photoBaseUrl = "https://interactive.guim.co.uk/2016/06/euros-player-pictures/"
 
 var dataSources = {
         "England": "1Zsw-NAT-8xtXSQ8t-X3eyisqJPv4G-qFFHvmZ1ej0fw",
@@ -55,7 +56,6 @@ window.init = function init(el, config) {
         		console.error('no response')
         		return false
         	}
-            console.log(resp);
         	
 			resp.sheets.Players.forEach(function(p){
                 p.country = embedInfo.team;
@@ -97,7 +97,8 @@ function createCard(el,config){
     el.querySelector('.player-goals span').innerHTML = player["goals for country"];
     el.querySelector('.player-caps span').innerHTML = player.caps;
     el.querySelector('.player-description').innerHTML = player.bio;
-    el.querySelector('.player-photo').className += " sprite-" + player.simpleName;
+    // el.querySelector('.player-photo').className += " sprite-" + player.simpleName;
+    el.querySelector('.player-photo').style = "background-image:url(" + photoBaseUrl + player.country + '/' + player.simpleName + '.jpg)';
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team)
 
     player.rating = [];
@@ -116,7 +117,7 @@ function createCard(el,config){
         }
     }
 
-    if(player.hasRating){
+    if(!player.hasRating){
         el.querySelector('.player-form').innerHTML = "";
     }else{
         var ratingContainer = el.querySelector('.player-form span');

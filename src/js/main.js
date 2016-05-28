@@ -25,8 +25,8 @@ var dataSources = {
     "Italy":"1UkRPDfrRNOkyIazXFWERCchz9pU1hu7g7wmTRjywBMM",
     "Belgium":"1Yh-6uphNjJSbjbXhlzfl8SiYl-w6cTvk51_A_vr9sjE",
     "Wales" : "1o8MdeEpwI1NQsk7rgVx6qQDhjhjt4foxK1c--tB3DoU",
-    "Rep of Ireland":"12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E",
-    "N Ireland":"1bD63bY4jeYtUVg9KFlKRa8C87hHQYKvlYXAxyc-5IMY",
+    "Republic of Ireland":"12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E",
+    "Northern Ireland":"1bD63bY4jeYtUVg9KFlKRa8C87hHQYKvlYXAxyc-5IMY",
     "Spain":"14dG-Or6_BhOJQBPcgzQktd6T0w1m93VPYmCEjr-FqMU",
     "Portugal":"1Tr7SbOKabNyj7-NPsqV-1PnrNlPH46KrZSMev76Mw3s",
     "Russia":"1dX0AiX3fwQbKrq4KNGCK44ek_g-cUgPao1O_UQJ6e5Y",
@@ -146,10 +146,19 @@ function createPage(el,config){
 
 
     var quickNav = document.querySelector('#quicknav-container select');
-    data.teams.forEach(function(team){
+    var optgroup;
+    data.teams.forEach(function(team,i){
+        // if(i%4 === 0){
+        //     optgroup = document.createElement('optgroup');
+        //     optgroup.label = "Group " + team.group;
+        //     quickNav.appendChild(optgroup);
+        // }
         var optionEl = document.createElement('option');
         optionEl.innerHTML = team.teamName;
+        // optgroup.appendChild(optionEl);
+        console.log(optgroup)
         quickNav.appendChild(optionEl);
+        
     })
 
     quickNav.addEventListener('change',function(e){
@@ -182,9 +191,9 @@ function createPage(el,config){
     }
 
     function scrollInit(){
+        var windowHeight = window.innerHeight;
         if(!isMobile){
           var els = document.querySelectorAll('.team-container[data-loaded="false"]');
-          var windowHeight = window.innerHeight;
           window.addEventListener( 'scroll', debounce(checkScrollHeight, 20) );
           
           function checkScrollHeight(){
@@ -200,10 +209,11 @@ function createPage(el,config){
         }
 
         var teamsContainer = document.querySelector('#teams-container');
-        var quickNav = document.querySelector('#quicknav-container');
+        var quickNav = document.querySelector('#quicknav');
         var headerVisible = true;
+        var reachedBottom = false;
 
-        window.addEventListener( 'scroll', debounce(showQuicknav, 40) );
+        window.addEventListener( 'scroll', debounce(showQuicknav, 20) );
 
         function showQuicknav(){
             if(teamsContainer.getBoundingClientRect().top < 0 && headerVisible){
@@ -214,6 +224,18 @@ function createPage(el,config){
                 headerVisible = true;
                 quickNav.style.opacity = 0
             }
+
+            if(isMobile){
+                var teamsContainerOffset = teamsContainer.getBoundingClientRect();
+                if(teamsContainerOffset.bottom < windowHeight+40 && !reachedBottom){
+                    reachedBottom = true;
+                    quickNav.style.backgroundColor = "#ffbb00"
+                }else if(teamsContainerOffset.bottom > windowHeight+40 && reachedBottom){
+                    reachedBottom = false;
+                    quickNav.style.backgroundColor = "#fff"
+                }
+            }
+            
         }
         
     }
@@ -245,8 +267,7 @@ function createPage(el,config){
                     player.number = index;
                     player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
                     console.log(teamName,currentTeam)
-                    if(teamName === currentTeam && player.position === "Forward" && !foundActive){
-                        console.log('oi')
+                    if(teamName === currentTeam && player.position === "Goalkeeper" && !foundActive){
                         player.isActive = true;
                         currentActivePlayer = player;
                         foundActive = true;
@@ -405,49 +426,33 @@ function createPage(el,config){
 function createSketches(){
     var sketchContainer = $('#sketch-container');
     var projectDimensions = sketchContainer[0].getBoundingClientRect(); 
-    var amount = (projectDimensions.height/150) + (projectDimensions.width/150);
-    amount = amount > 140 ? 140 : amount;
-    
-    // for(var i=0;i<amount;i++){
-        var block = document.createElement('div');
-        // var offset = Math.round(Math.random()*20) * 150;
-        var gridX = Math.floor(projectDimensions.width/150);
-        var gridY = Math.round(projectDimensions.height/150);
 
-        for(var x=0; x<gridX; x++){
-            for(var y=0; y<gridY; y++){
-                var chance = 0.1;
-                if(!isMobile){
-                    if(gridX - x < 2 || x === 0){
-                        chance = 0.2;
-                    }
-                }else{
+    var gridX = Math.floor(projectDimensions.width/150);
+    var gridY = Math.round(projectDimensions.height/150);
+
+    for(var x=0; x<gridX; x++){
+        for(var y=0; y<gridY; y++){
+            var chance = 0.1;
+            if(!isMobile){
+                if(gridX - x < 2 || x === 0){
                     chance = 0.2;
                 }
-                
-                if(Math.random()<chance){
-                    var block = document.createElement('div');
-                    var offset = Math.round(Math.random()*20) * 150;
-                    block.className = "sketch-block"; 
-                    block.style.top = (y * 150) + "px";
-                    block.style.left = (x * 150) + "px";
-                    block.style.backgroundPosition = "0 -" + offset + "px";
-                    sketchContainer.append(block)
-                }
-                
+            }else{
+                chance = 0.2;
             }
+            
+            if(Math.random()<chance){
+                var block = document.createElement('div');
+                var offset = Math.round(Math.random()*20) * 150;
+                block.className = "sketch-block"; 
+                block.style.top = (y * 150) + "px";
+                block.style.left = (x * 150) + "px";
+                block.style.backgroundPosition = "0 -" + offset + "px";
+                sketchContainer.append(block)
+            }
+            
         }
-        console.log(gridX,gridY)
-
-        // var leftPos = Math.random() * projectDimensions.width - 150;
-
-
-        // block.className = "sketch-block";   
-        // block.style.backgroundPosition = "0 -" + offset + "px";
-        // block.style.top = Math.random()*projectDimensions.height + "px";
-        // block.style.left = Math.random()*(projectDimensions.width - 150) + "px";
-        // sketchContainer.append(block)
-    // }
+    }
 }
 
 function debounce(func, wait, immediate) {

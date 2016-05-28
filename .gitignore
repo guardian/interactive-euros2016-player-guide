@@ -9,4 +9,5 @@ cfg/aws-keys.json
 sprite-maker/node_modules
 sprite-maker/team_data
 sprite-maker/output
+sprite-maker/players
 sprite-maker/.DS_Store

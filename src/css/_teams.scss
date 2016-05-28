@@ -1,4 +1,44 @@
-*[data-teamname="England"][data-loaded="true"]{
+*[data-teamname='Albania'][data-loaded="true"]{
+	@import "teams/Albania-180";
+
+	@media(min-width:480px){
+		@import "teams/Albania-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Albania-260";
+	}
+}
+*[data-teamname='France'][data-loaded="true"]{
+	@import "teams/France-180";
+
+	@media(min-width:480px){
+		@import "teams/France-240";
+	}
+	@media(min-width:740px){
+		@import "teams/France-260";
+	}
+}
+*[data-teamname='Romania'][data-loaded="true"]{
+	@import "teams/Romania-180";
+
+	@media(min-width:480px){
+		@import "teams/Romania-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Romania-260";
+	}
+}
+*[data-teamname='Switzerland'][data-loaded="true"]{
+	@import "teams/Switzerland-180";
+
+	@media(min-width:480px){
+		@import "teams/Switzerland-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Switzerland-260";
+	}
+}
+*[data-teamname='England'][data-loaded="true"]{
 	@import "teams/England-180";
 
 	@media(min-width:480px){
@@ -8,114 +48,194 @@
 		@import "teams/England-260";
 	}
 }
-
-*[data-teamname="France"][data-loaded="true"]{
-	@import "teams/France-180";
-	
-	@media(min-width:480px){
-		@import "teams/France-240";
-	}
-	
-	@media(min-width:740px){
-		@import "teams/France-260";
-	}
-}
-*[data-teamname="Albania"][data-loaded="true"]{
-	@import "teams/Albania-180";
-	
-	@media(min-width:480px){
-		@import "teams/Albania-240";
-	}
-	
-	@media(min-width:740px){
-		@import "teams/Albania-260";
-	}
-}
-*[data-teamname="Belgium"][data-loaded="true"]{
-	@import "teams/Belgium-180";
-	
-	@media(min-width:480px){
-		@import "teams/Belgium-240";
-	}
-	
-	@media(min-width:740px){
-		@import "teams/Belgium-260";
-	}
-}
-*[data-teamname="Germany"][data-loaded="true"]{
-	@import "teams/Germany-180";
-	
-	@media(min-width:480px){
-		@import "teams/Germany-240";
-	}
-	
-	@media(min-width:740px){
-		@import "teams/Germany-260";
-	}
-}
-*[data-teamname="Italy"][data-loaded="true"]{
-	@import "teams/Italy-180";
-	
-	@media(min-width:480px){
-		@import "teams/Italy-240";
-	}
-	
-	@media(min-width:740px){
-		@import "teams/Italy-260";
-	}
-}
-*[data-teamname="Romania"][data-loaded="true"]{
-	@import "teams/Romania-180";
-	
-	@media(min-width:480px){
-		@import "teams/Romania-240";
-	}
-	
-	@media(min-width:740px){
-		@import "teams/Romania-260";
-	}
-}
-*[data-teamname="Russia"][data-loaded="true"]{
+*[data-teamname='Russia'][data-loaded="true"]{
 	@import "teams/Russia-180";
-	
+
 	@media(min-width:480px){
 		@import "teams/Russia-240";
 	}
-	
 	@media(min-width:740px){
 		@import "teams/Russia-260";
 	}
 }
-*[data-teamname="Sweden"][data-loaded="true"]{
-	@import "teams/Sweden-180";
-	
+*[data-teamname='Slovakia'][data-loaded="true"]{
+	@import "teams/Slovakia-180";
+
 	@media(min-width:480px){
-		@import "teams/Sweden-240";
+		@import "teams/Slovakia-240";
 	}
-	
 	@media(min-width:740px){
-		@import "teams/Sweden-260";
+		@import "teams/Slovakia-260";
 	}
 }
-*[data-teamname="Switzerland"][data-loaded="true"]{
-	@import "teams/Switzerland-180";
-	
-	@media(min-width:480px){
-		@import "teams/Switzerland-240";
-	}
-	
-	@media(min-width:740px){
-		@import "teams/Switzerland-260";
-	}
-}
-*[data-teamname="Wales"][data-loaded="true"]{
+*[data-teamname='Wales'][data-loaded="true"]{
 	@import "teams/Wales-180";
-	
+
 	@media(min-width:480px){
 		@import "teams/Wales-240";
 	}
-	
 	@media(min-width:740px){
 		@import "teams/Wales-260";
 	}
 }
+*[data-teamname='Germany'][data-loaded="true"]{
+	@import "teams/Germany-180";
+
+	@media(min-width:480px){
+		@import "teams/Germany-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Germany-260";
+	}
+}
+*[data-teamname='Northern Ireland'][data-loaded="true"]{
+	@import "teams/Northern Ireland-180";
+
+	@media(min-width:480px){
+		@import "teams/Northern Ireland-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Northern Ireland-260";
+	}
+}
+*[data-teamname='Poland'][data-loaded="true"]{
+	@import "teams/Poland-180";
+
+	@media(min-width:480px){
+		@import "teams/Poland-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Poland-260";
+	}
+}
+*[data-teamname='Ukraine'][data-loaded="true"]{
+	@import "teams/Ukraine-180";
+
+	@media(min-width:480px){
+		@import "teams/Ukraine-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Ukraine-260";
+	}
+}
+*[data-teamname='Croatia'][data-loaded="true"]{
+	@import "teams/Croatia-180";
+
+	@media(min-width:480px){
+		@import "teams/Croatia-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Croatia-260";
+	}
+}
+*[data-teamname='Czech Republic'][data-loaded="true"]{
+	@import "teams/Czech Republic-180";
+
+	@media(min-width:480px){
+		@import "teams/Czech Republic-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Czech Republic-260";
+	}
+}
+*[data-teamname='Spain'][data-loaded="true"]{
+	@import "teams/Spain-180";
+
+	@media(min-width:480px){
+		@import "teams/Spain-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Spain-260";
+	}
+}
+*[data-teamname='Turkey'][data-loaded="true"]{
+	@import "teams/Turkey-180";
+
+	@media(min-width:480px){
+		@import "teams/Turkey-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Turkey-260";
+	}
+}
+*[data-teamname='Belgium'][data-loaded="true"]{
+	@import "teams/Belgium-180";
+
+	@media(min-width:480px){
+		@import "teams/Belgium-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Belgium-260";
+	}
+}
+*[data-teamname='Italy'][data-loaded="true"]{
+	@import "teams/Italy-180";
+
+	@media(min-width:480px){
+		@import "teams/Italy-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Italy-260";
+	}
+}
+*[data-teamname='Republic of Ireland'][data-loaded="true"]{
+	@import "teams/Republic of Ireland-180";
+
+	@media(min-width:480px){
+		@import "teams/Republic of Ireland-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Republic of Ireland-260";
+	}
+}
+*[data-teamname='Sweden'][data-loaded="true"]{
+	@import "teams/Sweden-180";
+
+	@media(min-width:480px){
+		@import "teams/Sweden-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Sweden-260";
+	}
+}
+*[data-teamname='Austria'][data-loaded="true"]{
+	@import "teams/Austria-180";
+
+	@media(min-width:480px){
+		@import "teams/Austria-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Austria-260";
+	}
+}
+*[data-teamname='Hungary'][data-loaded="true"]{
+	@import "teams/Hungary-180";
+
+	@media(min-width:480px){
+		@import "teams/Hungary-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Hungary-260";
+	}
+}
+*[data-teamname='Iceland'][data-loaded="true"]{
+	@import "teams/Iceland-180";
+
+	@media(min-width:480px){
+		@import "teams/Iceland-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Iceland-260";
+	}
+}
+*[data-teamname='Portugal'][data-loaded="true"]{
+	@import "teams/Portugal-180";
+
+	@media(min-width:480px){
+		@import "teams/Portugal-240";
+	}
+	@media(min-width:740px){
+		@import "teams/Portugal-260";
+	}
+}
+

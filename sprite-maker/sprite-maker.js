@@ -277,14 +277,20 @@ function moveIntoPlace(css_path, img_path, filename){
 	  fs.copySync(css_path , final_css + filename + '.scss')
 	  console.log("success!" + filename + ' css');
 	} catch (err) {
-	  console.error(err)
+		if(err){
+			console.error(err)
+		}
+	  
 	}
 
 	try {
 	  fs.copySync(img_path , final_imgs + filename + '.jpg')
 	  console.log("success:" + filename + ' jpg');
 	} catch (err) {
-	  console.error(err)
+		if(err){
+			console.error(err)
+		}
+	  
 	}
 
 

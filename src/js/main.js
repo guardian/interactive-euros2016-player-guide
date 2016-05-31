@@ -81,14 +81,14 @@ export function init(el, context, config, mediator) {
                     "weaknesses": "Nothing here yet. Filling it in with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla."
                 }
                 console.log(team)
-                team.Bio = !team.Bio ? dummyText.bio : team.Bio;
-                team.strengths = !team.strengths ? dummyText.strengths : team.strengths;
-                team.weaknesses = !team.weaknesses ? dummyText.weaknesses : team.weaknesses;
-                team.opponents = resp.sheets.Teams.filter(function(opponent){
-                    return opponent.Group === team.Group && opponent.Team !== team.Team;
-                }).map(function(opponent){
-                    return opponent.Team;
-                })
+                // team.Bio = !team.Bio ? dummyText.bio : team.Bio;
+                // team.strengths = !team.strengths ? dummyText.strengths : team.strengths;
+                // team.weaknesses = !team.weaknesses ? dummyText.weaknesses : team.weaknesses;
+                // team.opponents = resp.sheets.Teams.filter(function(opponent){
+                //     return opponent.Group === team.Group && opponent.Team !== team.Team;
+                // }).map(function(opponent){
+                //     return opponent.Team;
+                // })
 
                 data.teams.push({
                     "teamName": team.Team,
@@ -148,16 +148,15 @@ function createPage(el,config){
     var quickNav = document.querySelector('#quicknav-container select');
     var optgroup;
     data.teams.forEach(function(team,i){
-        // if(i%4 === 0){
-        //     optgroup = document.createElement('optgroup');
-        //     optgroup.label = "Group " + team.group;
-        //     quickNav.appendChild(optgroup);
-        // }
+        if(i%4 === 0){
+            optgroup = document.createElement('optgroup');
+            optgroup.label = "Group " + team.group;
+            quickNav.appendChild(optgroup);
+        }
         var optionEl = document.createElement('option');
         optionEl.innerHTML = team.teamName;
-        // optgroup.appendChild(optionEl);
-        console.log(optgroup)
-        quickNav.appendChild(optionEl);
+        optgroup.appendChild(optionEl)
+        // quickNav.appendChild(optgroup);
         
     })
 
@@ -306,7 +305,8 @@ function createPage(el,config){
     function addPlayerEvents(teamName,teamData){
         var teamEl = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
         $('.player-container',teamEl).each(function(playerEl){
-            var playerName = playerEl.querySelector('.player-name').innerHTML;
+            var playerName = playerEl.querySelector('.player-name .player-name-span').innerHTML;
+            console.log(playerName)
 
             if(isMobile){
                 playerEl.addEventListener('click',function(e){

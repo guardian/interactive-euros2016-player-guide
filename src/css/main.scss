@@ -112,28 +112,6 @@ $lightYellow: #FFF8E9;
 		line-height: 1.2em;
 		max-width:620px;
 	}
-	&:before{
-		width: 99999px;
-	    height: 100%;
-	    position: absolute;
-	    top: 0;
-	    content: '';
-	    background: #333;
-	    left: 100%;
-	    background:url(assets/imgs/chalkboard.jpg) rgba(255,255,255,0.5) ;
-	    background-position:right;
-	}
-	&:after{
-		width: 99999px;
-	    height: 100%;
-	    position: absolute;
-	    top: 0;
-	    content: '';
-	    background: #333;
-	    right: 100%;
-	    background:url(assets/imgs/chalkboard.jpg) rgba(255,255,255,0.5);
-	    background-position:right;
-	}
 }
 
 #header-wrapper{
@@ -424,6 +402,12 @@ $lightYellow: #FFF8E9;
 		text-align: center;
 		margin:6px 0 0;
 		line-height: 1em;
+		.player-specialty{
+			display: block;
+			opacity:0.6;
+			font-weight:bold;
+			font-size:12px;
+		}
 	}
 }
 
@@ -459,6 +443,7 @@ $lightYellow: #FFF8E9;
 		padding-top:6px;
 		line-height:1em;
 		font-size:16px;
+		z-index:1;
 	}
 	&:after{
 		position: absolute;
@@ -604,7 +589,7 @@ $lightYellow: #FFF8E9;
 		padding:0 20px;
 
 		h3{
-			font-size:36px;
+			font-size:42px;
 		}
 		h1{
 			font-size:54px;
@@ -782,6 +767,30 @@ $lightYellow: #FFF8E9;
 	}
 }
 @media(min-width:740px){
+	#interactive-header{
+		&:before{
+			width: 99999px;
+		    height: 100%;
+		    position: absolute;
+		    top: 0;
+		    content: '';
+		    background: #333;
+		    left: 100%;
+		    background:url(assets/imgs/chalkboard.jpg) rgba(255,255,255,0.5) ;
+		    background-position:right;
+		}
+		&:after{
+			width: 99999px;
+		    height: 100%;
+		    position: absolute;
+		    top: 0;
+		    content: '';
+		    background: #333;
+		    right: 100%;
+		    background:url(assets/imgs/chalkboard.jpg) rgba(255,255,255,0.5);
+		    background-position:right;
+		}
+	}
 	.player-outer-container{
 		margin-bottom:12px;
 	}
@@ -1055,6 +1064,9 @@ $lightYellow: #FFF8E9;
 	}
 	#interactive-header h2{
 		font-size:42px;
+	}
+	#interactive-header h3{
+		font-size:48px;
 	}
 	#teams-menu p{
 		font-size:20px;

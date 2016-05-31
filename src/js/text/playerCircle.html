@@ -7,11 +7,11 @@
 			<div class="player-number">{{number}}</div>
 		</div>
 		{{#if isSpecial}}
-			<div class="marker-highlighter">
+			<!-- <div class="marker-highlighter">
 				<p>{{specialty}}</p>
 				<div class="marker-arrow"></div>
-			</div>
+			</div> -->
 		{{/if}}
-		<p class="player-name">{{name}}</p>
+		<p class="player-name"><span class="player-name-span">{{name}}</span>{{#if isSpecial}}<span class="player-specialty">{{specialty}}</span>{{/if}}</p>
 	</div>
 </div>

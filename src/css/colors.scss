@@ -1,10 +1,10 @@
 .player-gradient-container{
-		background:#333;
-	}
+	background:#333;
+}
 	.player-photo-container .player-number{
 		background:#333;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: #333;
 	}
 *[data-teamname='Albania']{
@@ -18,7 +18,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -46,7 +46,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor2;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor2;
 	}
 	.team-divider{
@@ -77,7 +77,7 @@
 	.player-photo-container .player-photo{
 		mix-blend-mode:hard-light;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor2;
 	}
 	.team-divider{
@@ -105,7 +105,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor2;
 	}
 	.team-divider{
@@ -134,7 +134,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -162,7 +162,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -190,7 +190,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -218,7 +218,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -246,7 +246,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -274,7 +274,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -302,7 +302,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -331,7 +331,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -359,7 +359,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -387,7 +387,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -416,7 +416,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -444,7 +444,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -472,7 +472,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -500,7 +500,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -528,7 +528,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -559,7 +559,7 @@
 	.player-photo-container .player-photo{
 		mix-blend-mode:overlay;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -587,7 +587,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -615,7 +615,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -643,7 +643,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{
@@ -672,7 +672,7 @@
 	.player-photo-container .player-number{
 		background:$mainColor1;
 	}
-	.player-header h2{
+	.player-header h2,.player-name .player-specialty{
 		color: $mainColor1;
 	}
 	.team-divider{

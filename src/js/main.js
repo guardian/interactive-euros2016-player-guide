@@ -80,15 +80,6 @@ export function init(el, context, config, mediator) {
                     "strengths": "Nothing has been filled in yet. So here's some test copy. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla.",
                     "weaknesses": "Nothing here yet. Filling it in with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla."
                 }
-                console.log(team)
-                // team.Bio = !team.Bio ? dummyText.bio : team.Bio;
-                // team.strengths = !team.strengths ? dummyText.strengths : team.strengths;
-                // team.weaknesses = !team.weaknesses ? dummyText.weaknesses : team.weaknesses;
-                // team.opponents = resp.sheets.Teams.filter(function(opponent){
-                //     return opponent.Group === team.Group && opponent.Team !== team.Team;
-                // }).map(function(opponent){
-                //     return opponent.Team;
-                // })
 
                 data.teams.push({
                     "teamName": team.Team,
@@ -123,6 +114,22 @@ function createPage(el,config){
     var playerDetailTemplate = Handlebars.compile(playerDetailHTML);
 
     el.innerHTML = mainTemplateParsed;
+
+    // if(isMobile){
+    //     var menuItems = $('#teams-strip *');
+    //     var menuWidth = 0;
+    //     menuItems.each(function(menuItem){
+    //         var style = window.getComputedStyle(menuItem);
+    //         // console.log(Number(style.width.replace("px","")))
+    //         menuWidth += Number(style.width.replace("px",""));
+    //         menuWidth += Number(style.marginLeft.replace("px",""));
+    //         menuWidth += Number(style.marginRight.replace("px",""));
+    //     })
+    //     console.log(menuWidth)
+    //     $('#teams-strip').css('width',menuWidth)
+        
+    // }
+    
 
     $('.menu-button').each(function(menuButton){
         menuButton.addEventListener('click',function(e){
@@ -265,7 +272,6 @@ function createPage(el,config){
                     player.isSpecial = player.specialty ? true : false;
                     player.number = index;
                     player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
-                    console.log(teamName,currentTeam)
                     if(teamName === currentTeam && player.position === "Goalkeeper" && !foundActive){
                         player.isActive = true;
                         currentActivePlayer = player;
@@ -304,9 +310,10 @@ function createPage(el,config){
 
     function addPlayerEvents(teamName,teamData){
         var teamEl = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
+        console.log('now looking for ' + teamEl)
         $('.player-container',teamEl).each(function(playerEl){
             var playerName = playerEl.querySelector('.player-name .player-name-span').innerHTML;
-            console.log(playerName)
+
 
             if(isMobile){
                 playerEl.addEventListener('click',function(e){
@@ -369,9 +376,11 @@ function createPage(el,config){
     }
 
     function createLine(pEl,playerData){
+        var pName = pEl.querySelector('.player-name .player-name-span').innerHTML;
         var pOffset = $(pEl).offset().top;
-        var pName = pEl.querySelector('.player-name').innerHTML;
+        var projectOffset = $('#sketch-container').offset().top;
         var playerChildEls = pEl.parentNode.parentNode.querySelectorAll('.player-container');
+        var elPosition = pOffset - projectOffset;
         var playerOffset = $(pEl).offset();
         var lineWidth = 10;
         var boxOffset = $('#detail-box-container').offset();
@@ -384,12 +393,13 @@ function createPage(el,config){
                 playerIndex = i + 1;
             }
         }
-        
-        $('#line-container').css('top',playerOffset.top + (playerOffset.width/2))
+
+        $('#line-container').css('top',elPosition + (playerOffset.width/2))
         $('#line-container').css('left',playerOffset.left + playerOffset.width - interactiveOffset.left)
-        $('#detail-box-container').css('transform','translateY(' + pOffset + 'px)');
+        $('#detail-box-container').css('transform','translateY(' + elPosition + 'px)');
         var playerDetailTemplateRendered = playerDetailTemplate(playerData).replace(/%assetPath%/g,config.assetPath);
         $('#detail-box-container')[0].innerHTML = playerDetailTemplateRendered;
+        $('#detail-box-container').attr('data-teamname',playerData.team)
 
         if(playerIndex < playerChildEls.length && playerIndex%4 !== 0){
             $('#player-line').css('width',lineWidth);

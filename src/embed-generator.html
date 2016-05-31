@@ -201,7 +201,7 @@
             var country = e.target.value.split('/')[1];
             var encodedCountry = encodeURIComponent(country);
 
-            var embedUrl = "https://interactive.guim.co.uk/testing/2016/04/euros-player-guide/embed/embed.html?player=" + encodedPlayer + "&team=" + encodedCountry;
+            var embedUrl = "https://interactive.guim.co.uk/2016/04/euros-player-guide/embed/embed.html?player=" + encodedPlayer + "&team=" + encodedCountry;
             inputBox.value = embedUrl;
             var iframe = document.querySelector('iframe');
             iframe.src= embedUrl;

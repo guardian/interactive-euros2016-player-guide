@@ -181,10 +181,14 @@ body {
 			font-size:11px;
 			line-height: 1em;
 			border-radius:24px;
-			background-image:url(assets/imgs/arrow.svg);
+			background-image:url(assets/imgs/arrow-dark.svg);
 			background-size:12px;
 			background-position: center right 9px;
 			background-repeat: no-repeat;
+			text-decoration: none;
+			&:hover{
+				background-color:#DCDAC4;
+			}
 
 		}
 	}

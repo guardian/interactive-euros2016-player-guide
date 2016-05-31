@@ -7,9 +7,10 @@
 		<div class="teaminfo-container">
 			<h3>{{Team}}</h3>
 			<ul class="team-meta">
-				<li>Fifa ranking <strong>{{[FIFA ranking]}}</strong></li>
-				<li>Group <strong>{{Group}}</strong></li>
-				<li>Manager <strong>{{manager}}</strong></li>
+				<li class="team-meta-ranking">Fifa ranking <strong>{{[FIFA ranking]}}</strong></li>
+				<li class="team-meta-group">Group <strong>{{Group}}</strong></li>
+				<li class="team-meta-manager">Manager <strong>{{Coach}}</strong></li>
+				<li class="team-meta-nextmatch">Next match <strong>{{[next match]}}</strong></li>
 			</ul>
 			<div class="team-kits">
 				{{#if ../lazyload}}

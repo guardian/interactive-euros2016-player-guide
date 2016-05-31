@@ -1,0 +1,24 @@
+[class^='sprite-'], [class*=' sprite-'] { background-image:url('assets/imgs/teams/France-240.jpg'); background-size:600px 600px; width:240px; height:240px; }
+.sprite-Kingsley_Coman { background-position:0 0; }
+.sprite-AndrPierre_Gignac { background-position:-120px 0; }
+.sprite-Antoine_Griezmann { background-position:0 -120px; }
+.sprite-Bacary_Sagna { background-position:-120px -120px; }
+.sprite-Benot_Costil { background-position:-240px 0; }
+.sprite-Blaise_Matuidi { background-position:-240px -120px; }
+.sprite-Christophe_Jallet { background-position:0 -240px; }
+.sprite-Dimitri_Payet { background-position:-120px -240px; }
+.sprite-Eliaquim_Mangala { background-position:-240px -240px; }
+.sprite-Hugo_Lloris { background-position:-360px 0; }
+.sprite-Jrmy_Mathieu { background-position:-360px -120px; }
+.sprite-Anthony_Martial { background-position:-360px -240px; }
+.sprite-Lassana_Diarra { background-position:0 -360px; }
+.sprite-Laurent_Koscielny { background-position:-120px -360px; }
+.sprite-Lucas_Digne { background-position:-240px -360px; }
+.sprite-Moussa_Sissoko { background-position:-360px -360px; }
+.sprite-NGolo_Kant { background-position:-480px 0; }
+.sprite-Olivier_Giroud { background-position:-480px -120px; }
+.sprite-Patrice_Evra { background-position:-480px -240px; }
+.sprite-Paul_Pogba { background-position:-480px -360px; }
+.sprite-Raphal_Varane { background-position:0 -480px; }
+.sprite-Steve_Mandanda { background-position:-120px -480px; }
+.sprite-Yohan_Cabaye { background-position:-240px -480px; }

@@ -1,0 +1,24 @@
+[class^='sprite-'], [class*=' sprite-'] { background-image:url('assets/imgs/teams/Sweden-260.jpg'); background-size:650px 650px; width:260px; height:260px; }
+.sprite-Marcus_Berg { background-position:0 0; }
+.sprite-Albin_Ekdal { background-position:-130px 0; }
+.sprite-Andreas_Isaksson { background-position:0 -130px; }
+.sprite-Emil_Forsberg { background-position:-130px -130px; }
+.sprite-Emir_Kujovic { background-position:-260px 0; }
+.sprite-Erik_Johansson { background-position:-260px -130px; }
+.sprite-Erkan_Zengin { background-position:0 -260px; }
+.sprite-Jimmy_Durmaz { background-position:-130px -260px; }
+.sprite-John_Guidetti { background-position:-260px -260px; }
+.sprite-Kim_Kllstrm { background-position:-390px 0; }
+.sprite-Ludwig_Augustinsson { background-position:-390px -130px; }
+.sprite-Andreas_Granqvist { background-position:-390px -260px; }
+.sprite-Martin_Olsson { background-position:0 -390px; }
+.sprite-Mikael_Lustig { background-position:-130px -390px; }
+.sprite-Oscar_Hiljemark { background-position:-260px -390px; }
+.sprite-Oscar_Lewicki { background-position:-390px -390px; }
+.sprite-Patrik_Carlgren { background-position:-520px 0; }
+.sprite-Pontus_Jansson { background-position:-520px -130px; }
+.sprite-Pontus_Wernbloom { background-position:-520px -260px; }
+.sprite-Robin_Olsen { background-position:-520px -390px; }
+.sprite-Sebastian_Larsson { background-position:0 -520px; }
+.sprite-Victor_Nilsson_Lindelf { background-position:-130px -520px; }
+.sprite-Zlatan_Ibrahimovic { background-position:-260px -520px; }

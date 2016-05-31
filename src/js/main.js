@@ -80,8 +80,8 @@ export function init(el, context, config, mediator) {
                     "strengths": "Nothing has been filled in yet. So here's some test copy. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla.",
                     "weaknesses": "Nothing here yet. Filling it in with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla."
                 }
-
-                team.bio = !team.bio ? dummyText.bio : team.bio;
+                console.log(team)
+                team.Bio = !team.Bio ? dummyText.bio : team.Bio;
                 team.strengths = !team.strengths ? dummyText.strengths : team.strengths;
                 team.weaknesses = !team.weaknesses ? dummyText.weaknesses : team.weaknesses;
                 team.opponents = resp.sheets.Teams.filter(function(opponent){

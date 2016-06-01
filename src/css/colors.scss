@@ -568,6 +568,9 @@
 	.player-header h2,.player-specialty{
 		color: $mainColor1;
 	}
+	.activePlayer .player-photo-container .player-gradient-container{
+		background-color:#777;
+	}
 	.team-divider{
 		.divider-1{
 			background:$mainColor1;

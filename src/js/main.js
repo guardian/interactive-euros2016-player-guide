@@ -3,6 +3,7 @@ import qwery from 'qwery'
 import bonzo from 'bonzo'
 import Handlebars from 'handlebars'
 import detect from './lib/detect';
+import share from './lib/share';
 
 import mainHTML from './text/main.html!text'
 import teamHTML from './text/teamPage.html!text'
@@ -396,6 +397,19 @@ function createPage(el,config){
                 'height':0
             })
         }
+    }
+
+    var shareButtons = document.querySelectorAll('#share-buttons button');
+    var shareMessage = "The Guardian's complete guide to Euro 2016 - every team and player";
+    var shareUrl = "http://www.theguardian.com/football/ng-interactive/2016/jun/01/euro-2016-the-complete-guide-to-every-squad-and-every-player-in-france";
+    var shareModal = share(shareMessage, shareUrl);
+
+    for(var i=0; i<shareButtons.length; i++){
+        shareButtons[i].addEventListener('click',function(e){
+            var network = e.target.className.replace('share-','');
+            
+            shareModal(network);
+        })
     }
 
     if(isMobile){

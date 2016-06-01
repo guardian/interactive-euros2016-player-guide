@@ -12,7 +12,7 @@ export default function share(title, shareURL, fbImg, twImg, hashTag) {
         var shareWindow;
 
         if (network === 'twitter') {
-            shareWindow = twitterBaseUrl + encodeURIComponent(twitterMessage + ' ') + shareURL;
+            shareWindow = twitterBaseUrl + encodeURIComponent(twitterMessage + ' ') + shareURL + '/stw';
         } else if (network === 'facebook') {
             shareWindow = facebookBaseUrl + shareURL + fbImgQry;
         } else if (network === 'email') {

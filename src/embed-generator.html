@@ -57,19 +57,19 @@
         	<select class="player">
         		<option></option>
         	</select>
-            <p>2. Do you want to remove the link to Guardian Euro guide? (do this only if you have many embeds on one page)</p>
+            <!-- <p>2. Do you want to remove the link to Guardian Euro guide? (do this only if you have many embeds on one page)</p>
             <select class="banner">
                 <option enabled>No</option>
                 <option>Yes</option>
-            </select>
-        	<p>3. Copy and paste this url into Composer</p>
+            </select> -->
+        	<p>2. Copy and paste this url into Composer</p>
         	<input type="text" id="iframe-url" />
             <iframe id="iframeTest" style="width: 100%; border: none; overflow: hidden; height:620px;"></iframe>
         </div>
     </div>
     <script>
         var playerBox = document.querySelector('select.player');
-        var bannerBox = document.querySelector('select.banner');
+        // var bannerBox = document.querySelector('select.banner');
         var inputBox = document.querySelector('input');
         var encodedPlayer, encodedCountry;
         var showBanner = true;
@@ -213,15 +213,15 @@
             createUrl();            
         })
 
-        bannerBox.addEventListener('change',function(e){
-            var val = e.target.value;
-            if(val==="Yes"){
-                showBanner = false
-            }else{
-                showBanner = true
-            }
-            createUrl()
-        })
+        // bannerBox.addEventListener('change',function(e){
+        //     var val = e.target.value;
+        //     if(val==="Yes"){
+        //         showBanner = false
+        //     }else{
+        //         showBanner = true
+        //     }
+        //     createUrl()
+        // })
 
         function createUrl(){
             var embedUrl = "https://interactive.guim.co.uk/2016/04/euros-player-guide/embed/embed.html?player=" + encodedPlayer + "&team=" + encodedCountry + "&showBanner=" + showBanner;

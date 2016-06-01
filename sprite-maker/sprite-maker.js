@@ -24,9 +24,9 @@ var action;
 var team_data = {
 	// 'Germany': { 'key' : '1i4gM_GeUfoSvBXRHEpFAhgz3UHJukeLqxBiGwZtMKfc'}, 
 	// 'Hungary': { 'key' : '13PX3dUtmYOkjruakrseUoZoUfKcXIDPi9TsMT8WlX6M'},
-	// 'Iceland': { 'key' : '1jie0qY09f8AqezNJqnVXzRpQOd7EcA9xPsyjkRFzHto'},
+	'Iceland': { 'key' : '1jie0qY09f8AqezNJqnVXzRpQOd7EcA9xPsyjkRFzHto'},
 	// 'Ukraine': { 'key' : '1ddJ0CvPm23g1AB3iK7jRmzqh5f5xGTiunhEmvg7t-aY'},
-	'Republic of Ireland': { 'key' : '12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E'},
+	// 'Republic of Ireland': { 'key' : '12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E'},
 	// 'Northern Ireland': { 'key' : '1bD63bY4jeYtUVg9KFlKRa8C87hHQYKvlYXAxyc-5IMY'},
 	// 'Croatia': { 'key' : '1hyDiy7WOTsZar11Z7JQW9F249rKfwjY7pc7uwFdzs7g'},
 	// 'Austria': { 'key' : '1I-Z57rFkvo3fIuh5W3ASAq2d3OCujL_PqPEWrZVA-0Q'},

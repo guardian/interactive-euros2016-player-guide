@@ -1,6 +1,7 @@
 import iframeMessenger from 'guardian/iframe-messenger'
 import reqwest from 'reqwest'
 import embedHTML from './text/embed.html!text'
+import ga from './lib/analytics';
 
 var players = [];
 var player;
@@ -159,9 +160,17 @@ function createCard(el,config){
             ratingContainer.appendChild(dot);
         })
     }
-    console.log(embedInfo)
-    if(embedInfo.showBanner === "false"){
-        el.querySelector('.guardian-guide-banner').style.display = "none";
-        el.querySelector('.interactive-embed .detail-player-container').style.borderBottom = "1px solid #EDEDE9";
-    }
+    // ga('send', 'event', 'draw', 'shared on ' + socialMedium, selectedCountry);
+    ga('create','UA-25353554-33')
+    ga('send','pageview')
+
+    el.querySelector('.to-guide-btn').addEventListener('click',function(e){
+        ga('send', 'event', 'clicked on banner', 'from ' + window.location);
+    })
+
+    // console.log(embedInfo)
+    // if(embedInfo.showBanner === "false"){
+    //     el.querySelector('.guardian-guide-banner').style.display = "none";
+    //     el.querySelector('.interactive-embed .detail-player-container').style.borderBottom = "1px solid #EDEDE9";
+    // }
 }

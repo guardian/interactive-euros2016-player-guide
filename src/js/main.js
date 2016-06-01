@@ -78,11 +78,6 @@ export function init(el, context, config, mediator) {
                     {position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},{position:"Midfielder"},
                     {position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"},{position:"Forward"}
                 ];
-                var dummyText = {
-                    "bio":"There is no bio yet for this country. So we fill it with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla. Probo facilis vulputate id vix, cu nec modo noluisse deterruisset. Munere definiebas cu est, per vide dicit ridens ne. Mei malis fabulas persequeris cu, ea dictas incorrupte mel.",
-                    "strengths": "Nothing has been filled in yet. So here's some test copy. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla.",
-                    "weaknesses": "Nothing here yet. Filling it in with some dummy text. Ius cu reque debet recusabo, eu vis tale vulputate. Atqui iudicabit ei duo, cum et fugit nulla."
-                }
 
                 data.teams.push({
                     "teamName": team.Team,
@@ -92,10 +87,10 @@ export function init(el, context, config, mediator) {
                     "newGroup": (i) % 4 === 0 ? true : false,
                     "teamInfo": team,
                     "players":{
-                        "Forwards": players.filter((player)=> player.position === "Forward" || player.position === "Forward (winger)"),
-                        "Midfielders": players.filter((player)=> player.position === "Midfielder"),
+                        "Goalkeepers": players.filter((player)=> player.position === "Goalkeeper"),
                         "Defenders": players.filter((player)=> player.position === "Defender"),
-                        "Goalkeepers": players.filter((player)=> player.position === "Goalkeeper")
+                        "Midfielders": players.filter((player)=> player.position === "Midfielder"),
+                        "Forwards": players.filter((player)=> player.position === "Forward" || player.position === "Forward (winger)")
                     },
                     "isActive": team.Team === currentTeam ? true : false
                 })
@@ -401,7 +396,7 @@ function createPage(el,config){
 
     var shareButtons = document.querySelectorAll('#share-buttons button');
     var shareMessage = "The Guardian's complete guide to Euro 2016 - every team and player";
-    var shareUrl = "http://www.theguardian.com/football/ng-interactive/2016/jun/01/euro-2016-the-complete-guide-to-every-squad-and-every-player-in-france";
+    var shareUrl = "http://gu.com/p/4jzpk";
     var shareModal = share(shareMessage, shareUrl);
 
     for(var i=0; i<shareButtons.length; i++){

@@ -193,6 +193,13 @@ body {
 
 		}
 	}
+	@media(max-width:130px){
+		.guardian-guide-banner{
+			.to-guide-btn{
+				background-image:none;
+			}
+		}
+	}
 	@media(min-width:300px){
 		.player-header{
 			height:100px;

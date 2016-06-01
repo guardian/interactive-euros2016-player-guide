@@ -169,8 +169,8 @@ function createCard(el,config){
     })
 
     // console.log(embedInfo)
-    // if(embedInfo.showBanner === "false"){
-    //     el.querySelector('.guardian-guide-banner').style.display = "none";
-    //     el.querySelector('.interactive-embed .detail-player-container').style.borderBottom = "1px solid #EDEDE9";
-    // }
+    if(embedInfo.isSimple === "true"){
+        el.querySelector('.player-primary-info ul').style.display = "none";
+        el.querySelector('.guardian-guide-banner h3 span').style.display = "none";
+    }
 }

@@ -33,19 +33,19 @@ var team_data = {
 	// 'Czech Republic': { 'key' : '1lMTejNFx6icnonGIi8kQ3W0NAIEW2mu9DUaGTHjZJWA'},
 	// 'Poland': { 'key' : '13BT44qfZatoB-QqqKOB3jgea8cUQiMb3DpIDIT4kvRw'},
 	// 'Portugal': { 'key' : '1Tr7SbOKabNyj7-NPsqV-1PnrNlPH46KrZSMev76Mw3s'},
-	// 'Belgium': { 'key' : '1Yh-6uphNjJSbjbXhlzfl8SiYl-w6cTvk51_A_vr9sjE'},
-	// 'Spain': { 'key' : '14dG-Or6_BhOJQBPcgzQktd6T0w1m93VPYmCEjr-FqMU'},
-	// 'Italy': { 'key' : '1UkRPDfrRNOkyIazXFWERCchz9pU1hu7g7wmTRjywBMM'},
-	// 'Slovakia': { 'key' : '1mV-s921mm6J4ZYRWRLccuKbZTXIUGePE6T--eY_kAQA'},
-	// 'Russia': { 'key' : '1dX0AiX3fwQbKrq4KNGCK44ek_g-cUgPao1O_UQJ6e5Y'},
-	// 'Romania': { 'key' : '18oqBD3hE61x-7T_UkNMytIK12vDPSeeVYjm5e7afgqM'},
-	// 'Turkey': { 'key' : '1T976zQpp_kp4wCtZOCw8vDe8l5GQBJDRARaWcFGmFb4'}, //not finished
-	// 'Switzerland': { 'key' : '1ff7gCcNTzEdAbFrFsCIBECneskzX-xjjU8ZpsEhJsj8'},
+	'Belgium': { 'key' : '1Yh-6uphNjJSbjbXhlzfl8SiYl-w6cTvk51_A_vr9sjE'},
+	'Spain': { 'key' : '14dG-Or6_BhOJQBPcgzQktd6T0w1m93VPYmCEjr-FqMU'},
+	'Italy': { 'key' : '1UkRPDfrRNOkyIazXFWERCchz9pU1hu7g7wmTRjywBMM'},
+	'Slovakia': { 'key' : '1mV-s921mm6J4ZYRWRLccuKbZTXIUGePE6T--eY_kAQA'},
+	'Russia': { 'key' : '1dX0AiX3fwQbKrq4KNGCK44ek_g-cUgPao1O_UQJ6e5Y'},
+	'Romania': { 'key' : '18oqBD3hE61x-7T_UkNMytIK12vDPSeeVYjm5e7afgqM'},
+	'Turkey': { 'key' : '1T976zQpp_kp4wCtZOCw8vDe8l5GQBJDRARaWcFGmFb4'}, //not finished
+	'Switzerland': { 'key' : '1ff7gCcNTzEdAbFrFsCIBECneskzX-xjjU8ZpsEhJsj8'},
 	'Albania': { 'key' : '1UPpqsr7WEwnL7sKX3sT2CoJqVAj_JN-M0UZMJpp85-g'},
-	// 'Sweden': { 'key' : '1Fl2BMqcD70ArTn9BCA0i-DTs4kGePKYY9SXcDhcFdcI'}, 
-	// 'Wales': { 'key' : '1o8MdeEpwI1NQsk7rgVx6qQDhjhjt4foxK1c--tB3DoU'},
-	// 'France': { 'key' : '1KAJtvbQhvsvZ2ssIY2_7qiLuOYSmFCJ1E_1eQ0ETLas'},
-	// 'England': { 'key' : '1Zsw-NAT-8xtXSQ8t-X3eyisqJPv4G-qFFHvmZ1ej0fw'}	
+	'Sweden': { 'key' : '1Fl2BMqcD70ArTn9BCA0i-DTs4kGePKYY9SXcDhcFdcI'}, 
+	'Wales': { 'key' : '1o8MdeEpwI1NQsk7rgVx6qQDhjhjt4foxK1c--tB3DoU'},
+	'France': { 'key' : '1KAJtvbQhvsvZ2ssIY2_7qiLuOYSmFCJ1E_1eQ0ETLas'},
+	'England': { 'key' : '1Zsw-NAT-8xtXSQ8t-X3eyisqJPv4G-qFFHvmZ1ej0fw'}	
 }
 
 

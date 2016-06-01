@@ -2,6 +2,7 @@ import reqwest from 'reqwest'
 import qwery from 'qwery'
 import bonzo from 'bonzo'
 import Handlebars from 'handlebars'
+import detect from './lib/detect';
 
 import mainHTML from './text/main.html!text'
 import teamHTML from './text/teamPage.html!text'
@@ -44,6 +45,7 @@ var dataSources = {
     "Iceland": "1jie0qY09f8AqezNJqnVXzRpQOd7EcA9xPsyjkRFzHto"
 }
 var masterTeamData = "1We0iF5KgHN0LlQjFn9C9onBrX1ovVJnsbTv9qTKBQn0";
+var isAndroidApp = ( detect.isAndroid() && window.location.origin === "file://" ) ? true : false;
 
 function $(selector,context){
     return bonzo(qwery(selector,context));
@@ -115,22 +117,6 @@ function createPage(el,config){
 
     el.innerHTML = mainTemplateParsed;
 
-    // if(isMobile){
-    //     var menuItems = $('#teams-strip *');
-    //     var menuWidth = 0;
-    //     menuItems.each(function(menuItem){
-    //         var style = window.getComputedStyle(menuItem);
-    //         // console.log(Number(style.width.replace("px","")))
-    //         menuWidth += Number(style.width.replace("px",""));
-    //         menuWidth += Number(style.marginLeft.replace("px",""));
-    //         menuWidth += Number(style.marginRight.replace("px",""));
-    //     })
-    //     console.log(menuWidth)
-    //     $('#teams-strip').css('width',menuWidth)
-        
-    // }
-    
-
     $('.menu-button').each(function(menuButton){
         menuButton.addEventListener('click',function(e){
             currentTeam = menuButton.innerHTML;
@@ -149,8 +135,6 @@ function createPage(el,config){
             }  
         })
     });
-
-
 
     var quickNav = document.querySelector('#quicknav-container select');
     var optgroup;
@@ -310,7 +294,6 @@ function createPage(el,config){
 
     function addPlayerEvents(teamName,teamData){
         var teamEl = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
-        console.log('now looking for ' + teamEl)
         $('.player-container',teamEl).each(function(playerEl){
             var playerName = playerEl.querySelector('.player-name .player-name-span').innerHTML;
 
@@ -430,6 +413,34 @@ function createPage(el,config){
     setTimeout(createSketches,1000);
     
     scrollInit();
+
+    
+    if(window.guardian){
+        if(detect.isIOS() && window.guardian.config.page.buildNumber == undefined){
+            var detailEl = document.querySelector('#detail-overlay-container');
+            detailEl.style.top = "-40px";
+            detailEl.style.paddingTop = "40px";
+        }
+    }
+
+    if(isAndroidApp && window.GuardianJSInterface.registerRelatedCardsTouch){
+        var menuEl = document.querySelector('#teams-menu');
+        var detailEl = document.querySelector('#detail-overlay-container');
+
+        menuEl.addEventListener("touchstart", function(){
+            window.GuardianJSInterface.registerRelatedCardsTouch(true);
+        });
+        menuEl.addEventListener("touchend", function(){
+            window.GuardianJSInterface.registerRelatedCardsTouch(false);
+        });
+
+        detailEl.addEventListener("touchstart", function(){
+            window.GuardianJSInterface.registerRelatedCardsTouch(true);
+        });
+        detailEl.addEventListener("touchend", function(){
+            window.GuardianJSInterface.registerRelatedCardsTouch(false);
+        });
+    }
 }
 
 

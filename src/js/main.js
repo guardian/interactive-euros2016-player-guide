@@ -380,6 +380,15 @@ function createPage(el,config){
         $('#detail-box-container')[0].innerHTML = playerDetailTemplateRendered;
         $('#detail-box-container').attr('data-teamname',playerData.team)
 
+        var totalOffset = elPosition + $('#detail-box-container').offset().height;
+        var teamContainerHeight = $('#sketch-container').offset().height;
+        var isOffscreen = totalOffset > teamContainerHeight;
+        
+        if(isOffscreen){
+            var updatedOffset = teamContainerHeight - $('#detail-box-container').offset().height - 40;
+            $('#detail-box-container').css('transform','translateY(' + updatedOffset + 'px)');
+        }
+
         if(playerIndex < playerChildEls.length && playerIndex%4 !== 0){
             $('#player-line').css('width',lineWidth);
             $('#line-box').css('width',diff)

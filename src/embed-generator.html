@@ -54,17 +54,25 @@
         <p id="status"><strong>Loading all players.. this might take a few seconds.</strong></p>
     	<div class="loading">
             <p>1. Select a player</p>
-        	<select>
+        	<select class="player">
         		<option></option>
         	</select>
-        	<p>2. Copy and paste this url into Composer</p>
+            <p>2. Do you want to remove the link to Guardian Euro guide? (do this only if you have many embeds on one page)</p>
+            <select class="banner">
+                <option enabled>No</option>
+                <option>Yes</option>
+            </select>
+        	<p>3. Copy and paste this url into Composer</p>
         	<input type="text" id="iframe-url" />
             <iframe id="iframeTest" style="width: 100%; border: none; overflow: hidden; height:620px;"></iframe>
         </div>
     </div>
     <script>
-        var selectBox = document.querySelector('select');
+        var playerBox = document.querySelector('select.player');
+        var bannerBox = document.querySelector('select.banner');
         var inputBox = document.querySelector('input');
+        var encodedPlayer, encodedCountry;
+        var showBanner = true;
         var dataSources = [
             {
                 "Team":"England",
@@ -191,21 +199,36 @@
                     optgroup.appendChild(opt)
                 })
 
-                selectBox.appendChild(optgroup);
+                playerBox.appendChild(optgroup);
             })
         } 
 
-        selectBox.addEventListener('change',function(e){
+        playerBox.addEventListener('change',function(e){
             var player = e.target.value.split('/')[0];
-            var encodedPlayer = encodeURIComponent(player);
             var country = e.target.value.split('/')[1];
-            var encodedCountry = encodeURIComponent(country);
 
-            var embedUrl = "https://interactive.guim.co.uk/2016/04/euros-player-guide/embed/embed.html?player=" + encodedPlayer + "&team=" + encodedCountry;
+            encodedPlayer = encodeURIComponent(player);
+            encodedCountry = encodeURIComponent(country);
+
+            createUrl();            
+        })
+
+        bannerBox.addEventListener('change',function(e){
+            var val = e.target.value;
+            if(val==="Yes"){
+                showBanner = false
+            }else{
+                showBanner = true
+            }
+            createUrl()
+        })
+
+        function createUrl(){
+            var embedUrl = "https://interactive.guim.co.uk/2016/04/euros-player-guide/embed/embed.html?player=" + encodedPlayer + "&team=" + encodedCountry + "&showBanner=" + showBanner;
             inputBox.value = embedUrl;
             var iframe = document.querySelector('iframe');
             iframe.src= embedUrl;
-        })
+        }
 
         getData(0);
     </script>

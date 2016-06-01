@@ -97,7 +97,6 @@ function createCard(el,config){
     el.querySelector('.player-goals span').innerHTML = player["goals for country"];
     el.querySelector('.player-caps span').innerHTML = player.caps;
     el.querySelector('.player-description').innerHTML = player.bio;
-    // el.querySelector('.player-photo').className += " sprite-" + player.simpleName;
     el.querySelector('.player-photo').style = "background-image:url(" + photoBaseUrl + player.country + '/' + player.simpleName + '.jpg)';
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team)
 
@@ -159,5 +158,10 @@ function createCard(el,config){
 
             ratingContainer.appendChild(dot);
         })
+    }
+    console.log(embedInfo)
+    if(embedInfo.showBanner === "false"){
+        el.querySelector('.guardian-guide-banner').style.display = "none";
+        el.querySelector('.interactive-embed .detail-player-container').style.borderBottom = "1px solid #EDEDE9";
     }
 }

@@ -17,8 +17,8 @@ var dataSources = {
         "Italy":"1UkRPDfrRNOkyIazXFWERCchz9pU1hu7g7wmTRjywBMM",
         "Belgium":"1Yh-6uphNjJSbjbXhlzfl8SiYl-w6cTvk51_A_vr9sjE",
         "Wales" : "1o8MdeEpwI1NQsk7rgVx6qQDhjhjt4foxK1c--tB3DoU",
-        "Rep of Ireland":"12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E",
-        "N Ireland":"1bD63bY4jeYtUVg9KFlKRa8C87hHQYKvlYXAxyc-5IMY",
+        "Republic of Ireland":"12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E",
+        "Northern Ireland":"1bD63bY4jeYtUVg9KFlKRa8C87hHQYKvlYXAxyc-5IMY",
         "Spain":"14dG-Or6_BhOJQBPcgzQktd6T0w1m93VPYmCEjr-FqMU",
         "Portugal":"1Tr7SbOKabNyj7-NPsqV-1PnrNlPH46KrZSMev76Mw3s",
         "Russia":"1dX0AiX3fwQbKrq4KNGCK44ek_g-cUgPao1O_UQJ6e5Y",
@@ -112,7 +112,9 @@ function createCard(el,config){
     el.querySelector('.player-number').innerHTML = player.number;
     el.querySelector('.player-photo').style.backgroundImage = "url(" + photoBaseUrl + player.country + '/' + player.simpleName + '.jpg)';
 
-    el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team)
+    el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team);
+
+    el.querySelector('.to-guide-btn').href += "&team=" + embedInfo.team
 
     player.rating = [];
     player.hasRating = false;
@@ -183,7 +185,5 @@ function createCard(el,config){
     // console.log(embedInfo)
     if(embedInfo.isSimple === "true"){
         el.querySelector('#embed-wrapper').className += " simple-layout";
-        // el.querySelector('.player-primary-info ul').style.display = "none";
-        // el.querySelector('.guardian-guide-banner h3 span').style.display = "none";
     }
 }

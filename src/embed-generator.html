@@ -45,6 +45,27 @@
             *{
                 box-sizing:border-box;
             }
+            #iframes{
+                font-size:0;
+                margin:40px -290px;
+            }
+            #iframes div{
+                display:inline-block;
+                margin-right:20px;
+                font-size:16px;
+            }
+            #iframes p{
+                margin:0.5em 0;
+            }
+            #iframeContainerThumbnail{
+                width:140px;
+            }
+            #iframeContainerMobile{
+                width:300px;
+            }
+            #iframeContainerDesktop{
+                width: 620px;
+            }
     </style>
 </head>
 <body>
@@ -57,14 +78,27 @@
         	<select class="player">
         		<option></option>
         	</select>
-            <p>2. Do you want a simple layout? (this is only if you use it as a thumbnail)</p>
+            <p>2. Do you want a simple layout?</p>
             <select class="simple">
                 <option enabled>No</option>
                 <option>Yes</option>
             </select>
-        	<p>2. Copy and paste this url into Composer</p>
+        	<p>3. Copy and paste this url into Composer</p>
         	<input type="text" id="iframe-url" />
-            <iframe id="iframeTest" style="width: 100%; border: none; overflow: hidden; height:620px;"></iframe>
+            <div id="iframes">
+                <div id="iframeContainerThumbnail">
+                    <p>Thumbnail</p>
+                    <iframe style=" border: none; overflow: hidden; height:620px;"></iframe>
+                </div>
+                <div id="iframeContainerMobile">
+                    <p>Supporting/inline mobile</p>
+                    <iframe style=" border: none; overflow: hidden; height:620px;"></iframe>
+                </div>
+                <div id="iframeContainerDesktop">
+                    <p>Inline desktop</p>
+                    <iframe style=" border: none; overflow: hidden; height:620px;"></iframe>
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -96,10 +130,10 @@
                 "Team":"Wales" ,
                 "key": "1o8MdeEpwI1NQsk7rgVx6qQDhjhjt4foxK1c--tB3DoU"
             },{
-                "Team":"Rep of Ireland",
+                "Team":"Republic of Ireland",
                 "key":"12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E"
             },{
-                "Team":"N Ireland",
+                "Team":"Northern Ireland",
                 "key":"1bD63bY4jeYtUVg9KFlKRa8C87hHQYKvlYXAxyc-5IMY"
             },{
                 "Team":"Spain",
@@ -226,8 +260,12 @@
         function createUrl(){
             var embedUrl = "https://interactive.guim.co.uk/2016/04/euros-player-guide/embed/embed.html?player=" + encodedPlayer + "&team=" + encodedCountry + "&isSimple=" + isSimple;
             inputBox.value = embedUrl;
-            var iframe = document.querySelector('iframe');
-            iframe.src= embedUrl;
+            var iframe = document.querySelectorAll('iframe');
+
+            for(var i=0; i<iframe.length; i++){
+                iframe[i].src =embedUrl;
+            }
+            // iframe.src= embedUrl;
         }
 
         getData(0);

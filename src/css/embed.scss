@@ -103,6 +103,7 @@ body {
 				&.player-position, &.player-club{
 					width:50%;
 					display: inline-block;
+					word-wrap: break-word;
 				}
 				&.player-goals,&.player-caps,&.player-age{
 					width:calc(100% / 3);

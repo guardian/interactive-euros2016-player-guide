@@ -61,7 +61,7 @@ export function init(el, context, config, mediator) {
             keyString[a.split('=')[0]] = a.split('=')[1];
         })
         if(keyString.team){
-            currentTeam = keyString.team;
+            currentTeam = decodeURIComponent(keyString.team);
         }
     }
     reqwest({
@@ -169,9 +169,13 @@ function createPage(el,config){
 
     if(keyString.team){
         if(isMobile){
-            loadPlayers(keyString.team);
+            loadPlayers(currentTeam);
         }else{
             loadPlayers(currentTeam);
+
+            var teamEl = $('.team-container[data-teamname="'+ currentTeam +'"]');
+            var teamOffset = teamEl.offset().top - 36;
+            $('body').scrollTop(teamOffset)
         }
     }else{
         loadPlayers(currentTeam);

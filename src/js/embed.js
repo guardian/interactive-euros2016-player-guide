@@ -46,11 +46,11 @@ window.init = function init(el, config) {
             embedInfo[v.split('=')[0]] = v.split('=')[1];
         })
     }
-
+    if(embedInfo.team){
+        embedInfo.team = decodeURIComponent(embedInfo.team);
+    }
+    
     var dataKey = dataSources[embedInfo.team];
-
-    console.log(meta)
-     console.log(embedInfo)
 
     reqwest({
         url: 'https://interactive.guim.co.uk/docsdata-test/' + dataKey + '.json',
@@ -76,7 +76,6 @@ function findPlayer(el,config){
 	if(embedInfo.player){
 		embedInfo.player = decodeURIComponent(embedInfo.player);
 	}
-
 
 	var selectedPlayers = players.filter(function(player){
 		return player.name.toLowerCase() === embedInfo.player.toLowerCase();
@@ -110,7 +109,9 @@ function createCard(el,config){
     
     el.querySelector('.player-description').innerHTML = player.bio;
     el.querySelector('.player-number').innerHTML = player.number;
-    el.querySelector('.player-photo').style.backgroundImage = "url(" + photoBaseUrl + player.country + '/' + player.simpleName + '.jpg)';
+    el.querySelector('.player-photo').style.backgroundImage = "url(" + photoBaseUrl + encodeURIComponent(player.country) + '/' + player.simpleName + '.jpg)';
+
+    console.log(player.country)
 
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team);
 

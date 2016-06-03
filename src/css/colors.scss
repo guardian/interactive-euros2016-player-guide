@@ -75,7 +75,7 @@
 		background:$mainColor2;
 	}
 	.player-photo-container .player-photo{
-		mix-blend-mode:hard-light;
+		mix-blend-mode:hard-light !important;
 	}
 	.player-header h2,.player-specialty{
 		color: $mainColor2;
@@ -563,8 +563,9 @@
 		background:$mainColor1;
 	}
 	.player-photo-container .player-photo{
-		mix-blend-mode:overlay;
+		mix-blend-mode:overlay !important;
 	}
+
 	.player-header h2,.player-specialty{
 		color: $mainColor1;
 	}

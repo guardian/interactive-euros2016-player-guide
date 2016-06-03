@@ -48,6 +48,9 @@ window.init = function init(el, config) {
 
     var dataKey = dataSources[embedInfo.team];
 
+    console.log(meta)
+     console.log(embedInfo)
+
     reqwest({
         url: 'https://interactive.guim.co.uk/docsdata-test/' + dataKey + '.json',
         type: 'json',
@@ -62,8 +65,6 @@ window.init = function init(el, config) {
                 p.country = embedInfo.team;
 				players.push(p);
 			})
-        		
-        	
 
             findPlayer(el,config);
         }
@@ -98,7 +99,7 @@ function createCard(el,config){
     el.querySelector('.player-goals span').innerHTML = player["goals for country"];
     el.querySelector('.player-caps span').innerHTML = player.caps;
     el.querySelector('.player-description').innerHTML = player.bio;
-    el.querySelector('.player-photo').style = "background-image:url(" + photoBaseUrl + player.country + '/' + player.simpleName + '.jpg)';
+    el.querySelector('.player-photo').style.backgroundImage = "url(" + photoBaseUrl + player.country + '/' + player.simpleName + '.jpg)';
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team)
 
     player.rating = [];
@@ -160,7 +161,6 @@ function createCard(el,config){
             ratingContainer.appendChild(dot);
         })
     }
-    // ga('send', 'event', 'draw', 'shared on ' + socialMedium, selectedCountry);
     ga('create','UA-25353554-33')
     ga('send','pageview')
 

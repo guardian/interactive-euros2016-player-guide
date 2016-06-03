@@ -47,6 +47,7 @@ var dataSources = {
 }
 var masterTeamData = "1We0iF5KgHN0LlQjFn9C9onBrX1ovVJnsbTv9qTKBQn0";
 var isAndroidApp = ( detect.isAndroid() && window.location.origin === "file://" ) ? true : false;
+var now = new Date().getTime();
 
 function $(selector,context){
     return bonzo(qwery(selector,context));
@@ -252,6 +253,11 @@ function createPage(el,config){
                     player.isSpecial = player.specialty ? true : false;
                     player.number = index;
                     player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
+                    var birthDate = player["date of birth"].split('/');
+                    var formattedBirthdate = birthDate[2] + "/" + birthDate[1] + "/" + birthDate[0]
+                    var unixBirthdate = new Date(formattedBirthdate).getTime();
+                    player.age = Math.floor((((((now - unixBirthdate)/1000)/60)/60)/24)/365)
+
                     if(teamName === currentTeam && player.position === "Goalkeeper" && !foundActive){
                         player.isActive = true;
                         currentActivePlayer = player;

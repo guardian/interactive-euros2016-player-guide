@@ -7,6 +7,7 @@ var players = [];
 var player;
 var embedInfo = {};
 var photoBaseUrl = "https://interactive.guim.co.uk/2016/06/euros-player-pictures/"
+var now = new Date().getTime();
 
 var dataSources = {
         "England": "1Zsw-NAT-8xtXSQ8t-X3eyisqJPv4G-qFFHvmZ1ej0fw",
@@ -84,6 +85,12 @@ function findPlayer(el,config){
 	if(selectedPlayers.length > 0){
 		player = selectedPlayers[0];
         player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
+
+        var birthDate = player["date of birth"].split('/');
+        var formattedBirthdate = birthDate[2] + "/" + birthDate[1] + "/" + birthDate[0]
+        var unixBirthdate = new Date(formattedBirthdate).getTime();
+        player.age = Math.floor((((((now - unixBirthdate)/1000)/60)/60)/24)/365)
+
 		createCard(el,config);
 	}else{
 		console.error('Couldn\'t find player with that name');
@@ -94,12 +101,17 @@ function findPlayer(el,config){
 function createCard(el,config){
     el.querySelector('h1').innerHTML = player.name;
     el.querySelector('h2').innerHTML = player.country;
-    el.querySelector('.player-number').innerHTML = player.number;
-    el.querySelector('.player-team span').innerHTML = player.club;
+    
+    el.querySelector('.player-position span').innerHTML = player.position;
+    el.querySelector('.player-club span').innerHTML = player.club;
+    el.querySelector('.player-age span').innerHTML = player.age;
     el.querySelector('.player-goals span').innerHTML = player["goals for country"];
     el.querySelector('.player-caps span').innerHTML = player.caps;
+    
     el.querySelector('.player-description').innerHTML = player.bio;
+    el.querySelector('.player-number').innerHTML = player.number;
     el.querySelector('.player-photo').style.backgroundImage = "url(" + photoBaseUrl + player.country + '/' + player.simpleName + '.jpg)';
+
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team)
 
     player.rating = [];
@@ -119,7 +131,7 @@ function createCard(el,config){
     }
 
     if(!player.hasRating){
-        el.querySelector('.player-form').innerHTML = "";
+        el.querySelector('.player-form').style.display = "none";
     }else{
         var ratingContainer = el.querySelector('.player-form span');
         var svgPath = el.querySelector('#line-container path');
@@ -170,7 +182,8 @@ function createCard(el,config){
 
     // console.log(embedInfo)
     if(embedInfo.isSimple === "true"){
-        el.querySelector('.player-primary-info ul').style.display = "none";
-        el.querySelector('.guardian-guide-banner h3 span').style.display = "none";
+        el.querySelector('#embed-wrapper').className += " simple-layout";
+        // el.querySelector('.player-primary-info ul').style.display = "none";
+        // el.querySelector('.guardian-guide-banner h3 span').style.display = "none";
     }
 }

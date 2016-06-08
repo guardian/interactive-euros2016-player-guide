@@ -122,12 +122,12 @@ function createCard(el,config){
     for(var key in player){
         if(key.toLowerCase().indexOf('rating_match') > -1){
             var count = key.toLowerCase().replace('rating_match','');
-            player.rating.push({
-                "match" : count,
-                "rating" : player[key]
-            })
-
             if(player.key){
+                player.rating.push({
+                    "match" : count,
+                    "rating" : player[key]
+                })
+   
                 player.hasRating = true;
             }
         }
@@ -136,44 +136,11 @@ function createCard(el,config){
     if(!player.hasRating){
         el.querySelector('.player-form').style.display = "none";
     }else{
-        var ratingContainer = el.querySelector('.player-form span');
-        var svgPath = el.querySelector('#line-container path');
-
-        player.rating.forEach(function(r,i){
-            var dot = document.createElement('div');
-            var offsetBottom = (r.rating/5)*100;
-            var offsetLeft = (i/(player.rating.length-1)) * 100;
-            
-            dot.className = "rating-dot";
-            dot.style.left = offsetLeft + "%";
-            dot.style.bottom = offsetBottom + "%";
-
-            var pathAttr = svgPath.getAttribute('d');
-
-            if(i===0){
-                pathAttr = "M4 " + (100 - offsetBottom + 1);
-            }else{
-                if(r.rating !== ""){
-                    pathAttr += " L" + (offsetLeft + 4) + " " + (100 - offsetBottom + 1);
-                }
-            }
-
-            svgPath.setAttribute('d',pathAttr);
-
-            if(r.rating === ""){
-                dot.className += " empty";
-                if(i !== player.rating.length -1 && i !== 0){
-                    var prevRating = player.rating[i-1].rating;
-                    var nextRating = player.rating[i+1].rating;
-                    var avgRating = (Number(prevRating) + Number(nextRating))/2;
-                    var offsetBottom = (avgRating/5)*100;
-                    dot.style.bottom = offsetBottom + "%";
-                }else{
-                    dot.style.bottom = "65%";
-                }
-            }
-
-            ratingContainer.appendChild(dot);
+        el.querySelector('.player-form span').innerHTML = "";
+        player.rating.forEach(function(r){
+            var rat = document.createElement('span');
+            rat.innerHTML = "Match #" + r.match + ": " + r.rating;
+            el.querySelector('.player-form').appendChild(rat)
         })
     }
     ga('create','UA-25353554-33')

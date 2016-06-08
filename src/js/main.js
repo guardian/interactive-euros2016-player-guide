@@ -255,7 +255,9 @@ function createPage(el,config){
                     player.team = teamName;
                     player.specialty = player["special player? (eg. key player, promising talent, etc)"];
                     player.isSpecial = player.specialty ? true : false;
-                    player.number = index;
+                    if(!player.number){
+                        player.number = "-"
+                    }
                     player.simpleName = player.name.trim().replace(/[^a-zA-Z 0-9.]+/g,'').replace(/ /g, '_').replace(/-/g, '');
                     var birthDate = player["date of birth"].split('/');
                     var formattedBirthdate = birthDate[2] + "/" + birthDate[1] + "/" + birthDate[0]
@@ -342,6 +344,10 @@ function createPage(el,config){
         }else{
             var activePlayerEl = $('.player-container.activePlayer')[0];
             createLine(activePlayerEl,currentActivePlayer);
+        }
+
+        if(!isMobile){
+            // initHeaderDrawing();
         }
         
     }
@@ -502,6 +508,56 @@ function createSketches(){
             
         }
     }
+}
+
+function initHeaderDrawing(){
+    var canvas = document.querySelector('#interactive-header canvas');
+    var headerEl = document.querySelector('#interactive-header');
+    var counter = 0;
+    var routes = [];
+    canvas.width = headerEl.offsetWidth;
+    canvas.height = headerEl.offsetHeight;
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    var elOffsetTop = canvas.getBoundingClientRect().top;
+    var elOffsetLeft = canvas.getBoundingClientRect().left;
+
+    console.log(elOffsetTop)
+
+    var ctx = canvas.getContext('2d');
+    ctx.lineJoin = ctx.lineCap = 'round';
+
+    var isDrawing, points = [];
+
+    headerEl.onmousedown = function(e) {
+        elOffsetTop = canvas.getBoundingClientRect().top;
+        elOffsetLeft = canvas.getBoundingClientRect().left;
+
+        console.log(elOffsetTop)
+        
+        routes.push([]);
+        points = routes[routes.length-1];
+        isDrawing = true;
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - elOffsetLeft, e.clientY - elOffsetTop);
+    };
+
+    headerEl.onmousemove = function(e) {
+      if (!isDrawing) return;
+        counter++;
+        ctx.lineWidth = getRandomInt(1, 3);
+        ctx.lineTo(e.clientX - elOffsetLeft, e.clientY - elOffsetTop);
+        ctx.strokeStyle = 'rgba(255,255,255,0.02)';
+        ctx.stroke();
+    };
+
+    el.onmouseup = function() {
+        if(!isDrawing){return false}
+            isDrawing = false;
+    };
 }
 
 function debounce(func, wait, immediate) {

@@ -24,7 +24,7 @@ var action;
 var team_data = {
 	// 'Germany': { 'key' : '1i4gM_GeUfoSvBXRHEpFAhgz3UHJukeLqxBiGwZtMKfc'}, 
 	// 'Hungary': { 'key' : '13PX3dUtmYOkjruakrseUoZoUfKcXIDPi9TsMT8WlX6M'},
-	'Iceland': { 'key' : '1jie0qY09f8AqezNJqnVXzRpQOd7EcA9xPsyjkRFzHto'},
+	// 'Iceland': { 'key' : '1jie0qY09f8AqezNJqnVXzRpQOd7EcA9xPsyjkRFzHto'},
 	// 'Ukraine': { 'key' : '1ddJ0CvPm23g1AB3iK7jRmzqh5f5xGTiunhEmvg7t-aY'},
 	// 'Republic of Ireland': { 'key' : '12dGYUtIkVrYRw-e0Ht_sjCXxC3qFcoe4ge7iXtKHE6E'},
 	// 'Northern Ireland': { 'key' : '1bD63bY4jeYtUVg9KFlKRa8C87hHQYKvlYXAxyc-5IMY'},
@@ -37,7 +37,7 @@ var team_data = {
 	// 'Spain': { 'key' : '14dG-Or6_BhOJQBPcgzQktd6T0w1m93VPYmCEjr-FqMU'},
 	// 'Italy': { 'key' : '1UkRPDfrRNOkyIazXFWERCchz9pU1hu7g7wmTRjywBMM'},
 	// 'Slovakia': { 'key' : '1mV-s921mm6J4ZYRWRLccuKbZTXIUGePE6T--eY_kAQA'},
-	// 'Russia': { 'key' : '1dX0AiX3fwQbKrq4KNGCK44ek_g-cUgPao1O_UQJ6e5Y'},
+	'Russia': { 'key' : '1dX0AiX3fwQbKrq4KNGCK44ek_g-cUgPao1O_UQJ6e5Y'},
 	// 'Romania': { 'key' : '18oqBD3hE61x-7T_UkNMytIK12vDPSeeVYjm5e7afgqM'},
 	// 'Turkey': { 'key' : '1T976zQpp_kp4wCtZOCw8vDe8l5GQBJDRARaWcFGmFb4'}, //not finished
 	// 'Switzerland': { 'key' : '1ff7gCcNTzEdAbFrFsCIBECneskzX-xjjU8ZpsEhJsj8'},

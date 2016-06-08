@@ -116,13 +116,13 @@ function createCard(el,config){
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team);
 
     el.querySelector('.to-guide-btn').href += "&team=" + embedInfo.team
-
+    console.log(player)
     player.rating = [];
     player.hasRating = false;
     for(var key in player){
         if(key.toLowerCase().indexOf('rating_match') > -1){
             var count = key.toLowerCase().replace('rating_match','');
-            if(player.key){
+            if(player[key]){
                 player.rating.push({
                     "match" : count,
                     "rating" : player[key]

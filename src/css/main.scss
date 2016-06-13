@@ -568,6 +568,10 @@ $lightYellow: #FFF8E9;
 		margin-bottom:6px;
 		font-size:14px;
 	}
+	.player-photo-container .player-photo{
+		filter:contrast(1.25) grayscale(0.25) brightness(1.1);
+		-webkit-filter:contrast(1.25) grayscale(0.25) brightness(1.1);
+	}
 }
 #detail-scroll-area{
 	position: absolute;

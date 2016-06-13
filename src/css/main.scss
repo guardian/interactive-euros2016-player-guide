@@ -614,28 +614,32 @@ $lightYellow: #FFF8E9;
 		font-size:18px;
 		font-family:$f-serif-headline;
 		margin-bottom:0;
-		margin-top:1em;
+		margin-top:12px;
 		line-height: 1em;
 	}
 	ul{
 		padding:0;
 		margin:6px 0 24px;
+		font-size:0;
 		
 		li{
 			list-style: none;
 			display:inline-block;
 			font-family:$f-sans-serif-text;
-			font-size:14px;
+			font-size:12px;
 			line-height:1em;
-			margin-right:10px;
 			color:#333;
 			font-weight:bold;
+			width:25%;
 			strong{
 				display:block;
 				margin:0;
 				color:#767676;
 				font-weight:normal;
 			}
+		}
+		.info-club,.info-rating{
+			width:50%;
 		}
 	}
 	p{
@@ -809,10 +813,18 @@ $lightYellow: #FFF8E9;
 
 	.detail-player-container{
 		h4{
-			margin-top:1.5em;
+			margin-top:12px;
+			font-size:21px;
 		}
 		ul{
-			margin-bottom:30px;
+			margin-bottom:12px;
+			margin-top:12px;
+			li{
+				font-size:14px;
+			}
+			.info-age,.info-club{
+				width:40%;
+			}
 		}
 		.player-primary-info{
 			width:calc(100% - 130px)
@@ -1056,6 +1068,27 @@ $lightYellow: #FFF8E9;
 			margin-bottom:0;
 			.player-primary-info{
 				width:100%;
+			}
+		}
+		ul{
+			li{
+				vertical-align: top;
+				margin-bottom:6px;
+			}
+			.info-club{
+				width:31%;
+			}
+			.info-caps{
+				width:31%;
+			}
+			.info-goals{
+				width:31%;
+			}
+			.info-age{
+				width:31%;
+			}
+			.info-rating{
+				width:62%;
 			}
 		}
 

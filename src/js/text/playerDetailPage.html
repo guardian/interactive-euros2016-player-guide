@@ -8,10 +8,19 @@
 	<div class="player-primary-info">
 		<h4>{{name}} {{#if isSpecial}}<span class="player-specialty">{{specialty}}</span>{{/if}}</h4>
 		<ul>
-			<li>Club <strong>{{club}}</strong></li>
-			<li>Age <strong>{{age}}</strong></li>
-			<li>Caps <strong>{{caps}}</strong></li>
-			<li>Goals <strong>{{[goals for country]}}</strong></li>
+			<li class="info-club">Club <strong>{{club}}</strong></li>
+			<li class="info-caps">Caps <strong>{{caps}}</strong></li>
+			<li class="info-goals">Goals <strong>{{[goals for country]}}</strong></li>
+			<li class="info-age">Age <strong>{{age}}</strong></li>
+			<li class="info-rating">Rating 
+				{{#if hasRating}}
+					{{#each rating}}
+					<strong>Match #{{match}}: {{rating}}</strong>
+					{{/each}}
+				{{else}}
+					<strong>No rating yet</strong>
+				{{/if}}
+			</li>
 		</ul>
 	</div>
 	<p>{{{bio}}}</p>

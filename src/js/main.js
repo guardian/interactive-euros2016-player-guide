@@ -270,6 +270,22 @@ function createPage(el,config){
                         foundActive = true;
                     }
 
+                    player.rating = [];
+                    player.hasRating = false;
+                    for(var key in player){
+                        if(key.toLowerCase().indexOf('rating_match') > -1){
+                            var count = key.toLowerCase().replace('rating_match','');
+                            if(player[key]){
+                                player.rating.push({
+                                    "match" : count,
+                                    "rating" : player[key]
+                                })
+                    
+                                player.hasRating = true;
+                            }
+                        }
+                    }
+
                     return player
                 })
 

@@ -269,20 +269,19 @@ function createPage(el,config){
                         currentActivePlayer = player;
                         foundActive = true;
                     }
-
-                    player.rating = [];
                     player.hasRating = false;
+                    player.rating = [{"match": "Group", "played":false },{"match": "", "played":false },{"match": "", "played":false },{"match": '16', "played":false },{"match": 'QF', "played":false },{"match": 'SF', "played":false },{"match": 'F', "played":false } ];
+                    var count = 0;
+
                     for(var key in player){
                         if(key.toLowerCase().indexOf('rating_match') > -1){
-                            var count = key.toLowerCase().replace('rating_match','');
+                            var match = key.toLowerCase().replace('rating_match','');
                             if(player[key]){
-                                player.rating.push({
-                                    "match" : count,
-                                    "rating" : player[key]
-                                })
-                    
                                 player.hasRating = true;
+                                player.rating[count].played = true;
+                                player.rating[count].rating = player[key];
                             }
+                            count++;
                         }
                     }
 

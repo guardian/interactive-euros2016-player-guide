@@ -613,13 +613,13 @@ $lightYellow: #FFF8E9;
 	h4{
 		font-size:18px;
 		font-family:$f-serif-headline;
-		margin-bottom:0;
-		margin-top:12px;
+		margin-bottom:12px;
+		margin-top:6px;
 		line-height: 1em;
 	}
 	ul{
 		padding:0;
-		margin:6px 0 24px;
+		margin:6px 0 0;
 		font-size:0;
 		
 		li{
@@ -631,15 +631,21 @@ $lightYellow: #FFF8E9;
 			color:#333;
 			font-weight:bold;
 			width:25%;
+			vertical-align: top;
+			margin-bottom:6px;
 			strong{
 				display:block;
 				margin:0;
 				color:#767676;
 				font-weight:normal;
+				margin-top:2px;
 			}
 		}
-		.info-club,.info-rating{
+		.info-club{
 			width:50%;
+		}
+		.info-rating{
+			width:75%;
 		}
 	}
 	p{
@@ -657,6 +663,61 @@ $lightYellow: #FFF8E9;
 		font-size: 18px;
 		line-height: 1em;
 		margin-bottom: 24px;
+	}
+
+	.player-rating-container{
+		position: relative;
+		width:100%;
+		font-size:0;
+		display:block;
+	}
+	.mark-container{
+		display: inline-block;
+		vertical-align: top;
+		margin-right:2px;
+		.mark-container-rating{
+			display:inline-block;
+			min-width:13px;
+			height:16px;
+			background-color:#9F9D8F;
+			color:#fff;
+			font-size:11px;
+			font-family:$f-serif-headline;
+			font-weight:bold;
+			border-radius:3px;
+			text-align: center;
+			line-height:1em;
+			padding-top:3px;
+		}
+		.mark-container-match{
+			display:block;
+			font-size:11px;
+			text-align: center;
+			line-height:1em;
+			width:13px;
+			font-weight:normal;
+			color:#9F9D8F;
+		}
+		&.not-played{
+			.mark-container-rating{
+				color:transparent;
+				opacity:0.4;
+			}
+		}
+		&:nth-child(3){
+			margin-right:7px;
+			position: relative;
+			&:after{
+				width:1px;
+				height:16px;
+				background-color:#ECECE9;
+				position: absolute;
+				display:block;
+				content:'';
+				right:-4px;
+				top:0;
+			}
+		}
 	}
 }
 
@@ -723,7 +784,6 @@ $lightYellow: #FFF8E9;
 				&.team-meta-nextmatch{
 					margin-top:18px;
 					margin-left:0;
-
 				}
 				ul li{
 					display:block;
@@ -824,6 +884,9 @@ $lightYellow: #FFF8E9;
 			}
 			.info-age,.info-club{
 				width:40%;
+			}
+			.info-rating{
+				width:60%;
 			}
 		}
 		.player-primary-info{

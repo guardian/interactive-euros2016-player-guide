@@ -13,13 +13,14 @@
 			<li class="info-goals">Goals <strong>{{[goals for country]}}</strong></li>
 			<li class="info-age">Age <strong>{{age}}</strong></li>
 			<li class="info-rating">Rating 
-				{{#if hasRating}}
+				<span class="player-rating-container">
 					{{#each rating}}
-					<strong>Match #{{match}}: {{rating}}</strong>
+						<div class="mark-container {{#if played}}{{else}}not-played{{/if}}">
+							<span class='mark-container-rating'>{{#if played}}{{rating}}{{else}}-{{/if}}</span>
+							<span class='mark-container-match'>{{match}}</span>
+						</div>
 					{{/each}}
-				{{else}}
-					<strong>No rating yet</strong>
-				{{/if}}
+				</span>
 			</li>
 		</ul>
 	</div>

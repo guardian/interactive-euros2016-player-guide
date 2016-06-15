@@ -112,9 +112,56 @@ body {
 		}
 	}
 	.player-form{
-		span{
+		.rating-container{
 			position: relative;
 			width:100%;
+			font-size:0;
+		}
+		.mark-container{
+			display: inline-block;
+			vertical-align: top;
+			margin-right:2px;
+			.mark-container-rating{
+				display:inline-block;
+				min-width:13px;
+				height:16px;
+				background-color:#9F9D8F;
+				color:#fff;
+				font-size:11px;
+				font-family:$f-serif-headline;
+				font-weight:bold;
+				border-radius:3px;
+				text-align: center;
+				line-height:1em;
+				padding-top:3px;
+			}
+			.mark-container-match{
+				display:block;
+				font-size:11px;
+				text-align: center;
+				line-height:1em;
+				width:13px;
+			}
+			&.not-played{
+				.mark-container-rating{
+					opacity:0.4;
+					color:transparent;
+				}
+			}
+			&:nth-child(3){
+				margin-right:7px;
+				position: relative;
+				&:after{
+					width:1px;
+					height:16px;
+					background-color:#ECECE9;
+					position: absolute;
+					display:block;
+					content:'';
+					right:-4px;
+					top:0;
+				}
+			}
 		}
 	}
 	.player-description{
@@ -208,12 +255,12 @@ body {
 						width:calc(100% / 3);
 					}
 					&.player-caps,&.player-goals{
-						width:calc(50% / 2);
+						width:calc(48% / 2);
 						display:inline-block;
 					}
 
 					&.player-form{
-						width:50%;
+						width:52%;
 						display: inline-block !important;
 
 					}
@@ -325,12 +372,15 @@ body {
 				&.player-position, &.player-club{
 					width:calc((100% - 150px) / 3);
 				}
-				&.player-goals,&.player-caps,&.player-age{
+				&.player-caps{
 					width:calc((100% - 150px) / 3);
+				}
+				&.player-goals,&.player-age{
+					width:calc((100% - 180px) / 3);
 				}
 
 				&.player-form{
-					width:calc((100% - 150px) / 3);
+					width:calc((100% - 120px) / 3);
 
 				}
 			}

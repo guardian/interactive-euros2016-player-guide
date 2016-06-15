@@ -111,25 +111,45 @@ function createCard(el,config){
     el.querySelector('.player-number').innerHTML = player.number;
     el.querySelector('.player-photo').style.backgroundImage = "url(" + photoBaseUrl + encodeURIComponent(player.country) + '/' + player.simpleName + '.jpg)';
 
-    console.log(player.country)
-
     el.querySelector('#embed-wrapper').setAttribute('data-teamname',embedInfo.team);
 
     el.querySelector('.to-guide-btn').href += "&team=" + embedInfo.team
-    console.log(player)
-    player.rating = [];
-    player.hasRating = false;
+
+    player.rating = [
+        {
+            "match": "Group",
+            "played":false
+        },{
+            "match": "",
+            "played":false
+        },{
+            "match": "",
+            "played":false
+        },{
+            "match": '16',
+            "played":false
+        },{
+            "match": 'QF',
+            "played":false
+        },{
+            "match": 'SF',
+            "played":false
+        },{
+            "match": 'F',
+            "played":false
+        }
+    ];
+    var count = 0;
+
     for(var key in player){
         if(key.toLowerCase().indexOf('rating_match') > -1){
-            var count = key.toLowerCase().replace('rating_match','');
+            var match = key.toLowerCase().replace('rating_match','');
             if(player[key]){
-                player.rating.push({
-                    "match" : count,
-                    "rating" : player[key]
-                })
-   
                 player.hasRating = true;
+                player.rating[count].played = true;
+                player.rating[count].rating = player[key];
             }
+            count++;
         }
     }
 
@@ -138,9 +158,16 @@ function createCard(el,config){
     }else{
         el.querySelector('.player-form span').innerHTML = "";
         player.rating.forEach(function(r){
-            var rat = document.createElement('span');
-            rat.innerHTML = "Match #" + r.match + ": " + r.rating;
-            el.querySelector('.player-form').appendChild(rat)
+            var rateEl = document.createElement('div');
+            rateEl.className = "mark-container";
+            if(r.played){
+               rateEl.innerHTML = "<span class='mark-container-rating'>" + r.rating + "</span><span class='mark-container-match'>" + r.match + "</span>"; 
+           }else{
+                rateEl.innerHTML = "<span class='mark-container-rating'>-</span><span class='mark-container-match'>" + r.match + "</span>"; 
+                rateEl.className += " not-played";
+           }
+            
+            el.querySelector('.player-form span').appendChild(rateEl)
         })
     }
     ga('create','UA-25353554-33')

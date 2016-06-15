@@ -235,6 +235,7 @@ function createPage(el,config){
         var teamData = data.teams.filter((team) => team.teamName === teamName)[0];
         var teamEl = document.querySelector('.team-container[data-teamname="' + teamName + '"]');
         var teamContainerEl = document.querySelector('#teams-container');
+        var totalRating = [];
 
         if(!isMobile){
             teamEl.setAttribute('data-loaded','true');
@@ -272,6 +273,7 @@ function createPage(el,config){
                     player.hasRating = false;
                     player.rating = [{"match": "Group", "played":false },{"match": "", "played":false },{"match": "", "played":false },{"match": '16', "played":false },{"match": 'QF', "played":false },{"match": 'SF', "played":false },{"match": 'F', "played":false } ];
                     var count = 0;
+                    
 
                     for(var key in player){
                         if(key.toLowerCase().indexOf('rating_match') > -1){
@@ -280,6 +282,7 @@ function createPage(el,config){
                                 player.hasRating = true;
                                 player.rating[count].played = true;
                                 player.rating[count].rating = player[key];
+                                totalRating.push(Number(player[key]));
                             }
                             count++;
                         }
@@ -287,6 +290,17 @@ function createPage(el,config){
 
                     return player
                 })
+
+                teamData.teamInfo.rating = calculateAverage(totalRating);
+
+                function calculateAverage(arr){
+                    var sum = 0;
+                    arr.forEach(function(i){
+                        sum += i;
+                    })
+
+                    return Math.round((sum/arr.length)*10)/10
+                }
 
                 teamData.players = {
                     "Goalkeepers": players.filter((player)=> player.position === "Goalkeeper"),

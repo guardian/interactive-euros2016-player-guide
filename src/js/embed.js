@@ -154,7 +154,7 @@ function createCard(el,config){
     }
 
     if(!player.hasRating){
-        el.querySelector('.player-form').style.display = "none";
+        el.querySelector('.player-form span').innerHTML = "No ratings";
     }else{
         el.querySelector('.player-form span').innerHTML = "";
         player.rating.forEach(function(r){

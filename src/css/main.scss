@@ -280,6 +280,19 @@ $lightYellow: #FFF8E9;
 		}
 		
 	}
+	&[data-buttonname="Wales"]{
+		margin-right:32px;
+		&:after{
+			position: absolute;
+			content: '';
+			display: block;
+			right: -16px;
+			width: 1px;
+			background: rgba(255, 255, 255, 0.25);
+			bottom: 10px;
+			top: 10px;
+		}
+	}
 }
 
 .interactive-container{
@@ -1084,6 +1097,12 @@ $lightYellow: #FFF8E9;
 			padding:0;
 			margin-right:16px;
 			&.active-team{
+			}
+			&[data-buttonname="Wales"]{
+				&:after{
+					
+					right: -20px;
+				}
 			}
 
 		}

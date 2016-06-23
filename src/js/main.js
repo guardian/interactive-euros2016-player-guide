@@ -12,7 +12,7 @@ import playerDetailHTML from './text/playerDetailPage.html!text'
 
 var data = {};
 var teams;
-var currentTeam = "Albania";
+var currentTeam = "Belgium";
 var currentActivePlayer;
 var windowWidth = window.innerWidth;
 var isMobile = windowWidth < 980 ? true : false;

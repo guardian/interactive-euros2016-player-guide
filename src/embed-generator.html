@@ -211,9 +211,9 @@
                 if(country < 23){
                     var newCount = country + 1;
                     getData(newCount)
-                    console.log('ooo')
                 }else{
                     fillSelectField();
+                    getRatings();
                 }
             });
         }
@@ -266,6 +266,53 @@
                 iframe[i].src =embedUrl;
             }
             // iframe.src= embedUrl;
+        }
+
+        function getRatings(){
+            var playerRatings = [];
+            dataz.forEach(function(team){
+                team.players.forEach(function(player){
+                    var playerRating = [];
+                    for(var key in player){
+                        if(key.toLowerCase().indexOf('rating_match') > -1){
+                            var match = key.toLowerCase().replace('rating_match','');
+                            if(player[key]){
+                                // console.log(Number(player[key]))
+                                playerRating.push(Number(player[key]));
+                            }
+                        }
+                    }
+
+                    var total = 0;
+                    if(playerRating.length>1){
+                        playerRating.forEach(function(rating){
+                            total += rating;
+                        })
+                        var average = total/playerRating.length;
+                        playerRatings.push({
+                            "player": player.name,
+                            "rating": average
+                        })
+                    }
+                    
+                    
+                    // console.log(average)
+                })
+            })
+            console.log(playerRatings)
+
+            var sorted = playerRatings.sort(function(a,b) {
+                if (a.rating < b.rating)
+                    return 1;
+                if (a.rating > b.rating)
+                    return -1;
+                return 0;
+            })
+            sorted.forEach(function(player,i){
+                if(i < 30){
+                    console.log(player.player + '(' + player.rating + ')')
+                }
+            });
         }
 
         getData(0);

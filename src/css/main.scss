@@ -280,17 +280,20 @@ $lightYellow: #FFF8E9;
 		}
 		
 	}
-	&[data-buttonname="Wales"]{
-		margin-right:32px;
-		&:after{
-			position: absolute;
-			content: '';
-			display: block;
-			right: -16px;
-			width: 1px;
-			background: rgba(255, 255, 255, 0.25);
-			bottom: 10px;
-			top: 10px;
+	&[data-buttonname="Albania"]{
+		&:before{
+			// position: absolute;
+			content: 'Already eliminated: ';
+			margin-right:18px;
+			font-weight:bold;
+			display: inline-block;
+			opacity:0.4;
+			margin-left:24px;
+			// right: -16px;
+			// width: 1px;
+			// background: rgba(255, 255, 255, 0.25);
+			// bottom: 10px;
+			// top: 10px;
 		}
 	}
 }
@@ -1096,15 +1099,6 @@ $lightYellow: #FFF8E9;
 			font-size:16px;
 			padding:0;
 			margin-right:16px;
-			&.active-team{
-			}
-			&[data-buttonname="Wales"]{
-				&:after{
-					
-					right: -20px;
-				}
-			}
-
 		}
 	}
 	#teams-container{

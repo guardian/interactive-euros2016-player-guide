@@ -135,16 +135,19 @@ function createPage(el,config){
 
     var quickNav = document.querySelector('#quicknav-container select');
     var optgroup;
+    var groupLabels = ["Knockout stage", "Already eliminated"]
+    var groupCount = 0;
     data.teams.forEach(function(team,i){
-        if(i%4 === 0){
+        console.log(team)
+        if(i === 0 || team.teamName === "Albania"){
             optgroup = document.createElement('optgroup');
-            optgroup.label = "Group " + team.group;
+            optgroup.label = groupLabels[groupCount];
             quickNav.appendChild(optgroup);
+            groupCount++;
         }
         var optionEl = document.createElement('option');
         optionEl.innerHTML = team.teamName;
         optgroup.appendChild(optionEl)
-        // quickNav.appendChild(optgroup);
         
     })
 

@@ -254,7 +254,7 @@ $lightYellow: #FFF8E9;
 	margin-right:0;
 	cursor:pointer;
 	&.active-team{
-		&:before{
+		&:after{
 			position: absolute;
 			display: block;
 			content:'';
@@ -267,7 +267,7 @@ $lightYellow: #FFF8E9;
 		}
 	}
 	&:hover{
-		&:before{
+		&:after{
 			background-image:url(assets/imgs/marker-2.png);
 			position: absolute;
 			display: block;
@@ -282,18 +282,21 @@ $lightYellow: #FFF8E9;
 	}
 	&[data-buttonname="Albania"]{
 		&:before{
-			// position: absolute;
-			content: 'Already eliminated: ';
+			content: 'Eliminated: ';
 			margin-right:18px;
 			font-weight:bold;
 			display: inline-block;
 			opacity:0.4;
-			margin-left:24px;
-			// right: -16px;
-			// width: 1px;
-			// background: rgba(255, 255, 255, 0.25);
-			// bottom: 10px;
-			// top: 10px;
+		}
+		&:hover{
+			&:after{
+				left:100px;
+			}
+		}
+		&.active-team{
+			&:after{
+				left:100px;
+			}
 		}
 	}
 }

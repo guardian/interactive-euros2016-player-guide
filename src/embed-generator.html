@@ -66,6 +66,16 @@
             #iframeContainerDesktop{
                 width: 620px;
             }
+            thead td{
+                font-weight:bold;
+                cursor:pointer;
+            }
+            thead td:hover{
+                text-decoration: underline;
+            }
+            tr.hide{
+                opacity:0.3;
+            }
     </style>
 </head>
 <body>
@@ -185,6 +195,12 @@
 
         var dataz = [];
 
+        console.log(window.location.hash)
+        if(window.location.hash === "#ratings"){
+            var el = document.querySelector('body');
+                el.innerHTML = "Loading player ratings (might take a few secs)";
+        }
+
         function fetchJSONFile(path, callback) {
             var httpRequest = new XMLHttpRequest();
             httpRequest.onreadystatechange = function() {
@@ -212,8 +228,13 @@
                     var newCount = country + 1;
                     getData(newCount)
                 }else{
-                    fillSelectField();
-                    getRatings();
+                    
+                    if(window.location.hash === "#ratings"){
+                        getRatings();
+                    }else{
+                        fillSelectField();
+                    }
+                    
                 }
             });
         }
@@ -270,6 +291,7 @@
 
         function getRatings(){
             var playerRatings = [];
+            console.log(dataz)
             dataz.forEach(function(team){
                 team.players.forEach(function(player){
                     var playerRating = [];
@@ -284,14 +306,23 @@
                     }
 
                     var total = 0;
-                    if(playerRating.length>1){
+                    if(playerRating.length>0){
                         playerRating.forEach(function(rating){
                             total += rating;
                         })
                         var average = total/playerRating.length;
                         playerRatings.push({
                             "player": player.name,
-                            "rating": average
+                            "rating": average,
+                            "matchCount": playerRating.length,
+                            "team": team.team
+                        })
+                    }else{
+                        playerRatings.push({
+                            "player": player.name,
+                            "rating": 0,
+                            "matchCount": playerRating.length,
+                            "team": team.team
                         })
                     }
                     
@@ -299,7 +330,7 @@
                     // console.log(average)
                 })
             })
-            console.log(playerRatings)
+            
 
             var sorted = playerRatings.sort(function(a,b) {
                 if (a.rating < b.rating)
@@ -308,11 +339,76 @@
                     return -1;
                 return 0;
             })
-            sorted.forEach(function(player,i){
-                if(i < 30){
-                    console.log(player.player + '(' + player.rating + ')')
+
+            
+
+            if(window.location.hash === "#ratings"){
+                function showPage(){
+                    var el = document.querySelector('body');
+                        el.innerHTML = "";
+
+                    var table = document.createElement('table');
+                        el.appendChild(table);
+
+                    var thead = document.createElement('thead');
+                        thead.innerHTML = "<tr><td>#</td><td class='player'>Player</td><td class='team'>Team</td><td class='rating'>Rating</td><td class='matchCount'>Matches played</td></tr>"
+
+                    table.appendChild(thead)
+
+                    playerRatings.forEach(function(player,i){
+                        var row = document.createElement('tr');
+                        var cellName = document.createElement('td');
+                            cellName.innerHTML = player.player
+
+                        var cellRating = document.createElement('td');
+                            cellRating.innerHTML = player.rating
+
+                        var cellMatches = document.createElement('td');
+                            cellMatches.innerHTML = player.matchCount
+
+                        var cellTeam = document.createElement('td');
+                            cellTeam.innerHTML = player.team
+
+                        var cellNo = document.createElement('td');
+                            cellNo.innerHTML = i + 1
+
+                        if(player.matchCount < 3){
+                            row.className = "hide"
+                        }
+
+                        row.appendChild(cellNo);
+                        row.appendChild(cellName);
+                        row.appendChild(cellTeam);
+                        row.appendChild(cellRating);
+                        row.appendChild(cellMatches);
+                        
+                        table.appendChild(row)
+                    })
+
+                    var tds = document.querySelectorAll('thead td');
+
+                    for(var x = 0; x <tds.length; x++){
+                        tds[x].addEventListener('click',function(e){
+                            var sorter = e.target.className;
+                            sorted = playerRatings.sort(function(a,b) {
+                                if (a[sorter] < b[sorter])
+                                    return 1;
+                                if (a[sorter] > b[sorter])
+                                    return -1;
+                                return 0;
+                            })
+                            showPage();
+                        })
+                    }
+                    
                 }
-            });
+
+
+
+                showPage();
+
+
+            }
         }
 
         getData(0);
